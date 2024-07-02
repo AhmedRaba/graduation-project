@@ -7,9 +7,12 @@
 
 
 
-    <style name="SplashScreenTheme" parent="Theme.Codespire">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="windowSplashScreenAnimationDuration">1000</item>
+    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/empty_data_icon</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/black</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Codespire</item>
     </style>
 
 </resources>
