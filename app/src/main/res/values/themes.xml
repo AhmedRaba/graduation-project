@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.Codespire" parent="Base.Theme.Codespire" />
+
+
+    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/empty_data_icon</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/black</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Codespire</item>
+    </style>
+
+
 </resources>
