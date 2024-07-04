@@ -17,4 +17,11 @@
     </style>
 
 
+    <style name="CustomEditText">
+        <item name="android:background">@drawable/et_border_selector</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColorHint">#9098B1</item>
+    </style>
+
+
 </resources>
