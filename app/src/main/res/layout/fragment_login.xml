@@ -96,15 +96,20 @@
 
         <TextView
             style="@style/GreyTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Don't have an account? " />
+            android:layout_weight="1"
+            android:text="Don't have an account? "
+            android:textAlignment="textEnd" />
 
         <TextView
+            android:id="@+id/tv_register"
             style="@style/BlueTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:clickable="true"
+            android:focusable="true"
             android:text="Register" />
 
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.training.codespire.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -17,14 +18,20 @@ class LoginFragment : Fragment() {
 
 
 
+        navToRegister()
 
 
         checkLogin()
 
 
 
-
         return binding.root
+    }
+
+    private fun navToRegister() {
+        binding.tvRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        }
     }
 
     private fun checkLogin() {
@@ -35,25 +42,28 @@ class LoginFragment : Fragment() {
                 binding.etEmail.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.ic_error_message, 0, 0, 0
                 )
-            } else
+            } else {
                 binding.etEmail.setBackgroundResource(R.drawable.et_border_selector)
-            binding.etEmail.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_password_selector, 0, 0, 0
-            )
-        }
-        if (binding.etPassword.text.isEmpty()) {
-            binding.etPassword.error = "Password is required"
-            binding.etPassword.setBackgroundResource(R.drawable.et_border_error)
-            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_error_password, 0, 0, 0
-            )
-        } else {
-            binding.etPassword.setBackgroundResource(R.drawable.et_border_selector)
-            binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_password_selector, 0, 0, 0
-            )
+                binding.etEmail.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_message_selector, 0, 0, 0
+                )
+            }
+
+            if (binding.etPassword.text.isEmpty()) {
+                binding.etPassword.error = "Password is required"
+                binding.etPassword.setBackgroundResource(R.drawable.et_border_error)
+                binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_error_password, 0, 0, 0
+                )
+            } else {
+                binding.etPassword.setBackgroundResource(R.drawable.et_border_selector)
+                binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_password_selector, 0, 0, 0
+                )
+            }
         }
     }
-
-
 }
+
+
+

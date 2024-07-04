@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.training.codespire.SignUpFragment"
+        android:name="com.training.codespire.RegisterFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_register" />
 </navigation>
