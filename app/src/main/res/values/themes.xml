@@ -3,15 +3,15 @@
     <style name="Base.Theme.Codespire" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
     <style name="Theme.Codespire" parent="Base.Theme.Codespire" />
 
 
     <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/empty_data_icon</item>
-        <item name="windowSplashScreenIconBackgroundColor">@color/black</item>
+        <item name="windowSplashScreenBackground">#37617A</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_codespire</item>
         <item name="windowSplashScreenAnimationDuration">3000</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.Codespire</item>
     </style>
