@@ -21,15 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Welcome to Codespire"
-        android:textColor="#223263"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        style="@style/DarkBlueTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -39,7 +37,7 @@
         style="@style/GreyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Sign in to continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,9 +46,7 @@
     <EditText
         android:id="@+id/et_email"
         style="@style/CustomEditText"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:autofillHints="emailAddress"
         android:drawableStart="@drawable/ic_message_selector"
         android:hint="Your Email"
@@ -62,8 +58,6 @@
     <EditText
         android:id="@+id/et_password"
         style="@style/CustomEditText"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:autofillHints="password"
         android:drawableStart="@drawable/ic_password_selector"
@@ -77,7 +71,7 @@
         android:id="@+id/btn_sign_in"
         style="@style/CustomButton"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:text="Sign In"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,18 +90,16 @@
 
         <TextView
             style="@style/GreyTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Don't have an account? "
             android:textAlignment="textEnd" />
 
         <TextView
             android:id="@+id/tv_register"
             style="@style/BlueTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
             android:text="Register" />

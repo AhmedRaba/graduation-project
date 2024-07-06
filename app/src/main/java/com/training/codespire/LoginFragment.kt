@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import com.training.codespire.databinding.FragmentLoginBinding
 
@@ -36,33 +37,30 @@ class LoginFragment : Fragment() {
 
     private fun checkLogin() {
         binding.btnSignIn.setOnClickListener {
-            if (binding.etEmail.text.isEmpty()) {
-                binding.etEmail.error = "Email is required"
-                binding.etEmail.setBackgroundResource(R.drawable.et_border_error)
-                binding.etEmail.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_error_message, 0, 0, 0
-                )
-            } else {
-                binding.etEmail.setBackgroundResource(R.drawable.et_border_selector)
-                binding.etEmail.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_message_selector, 0, 0, 0
-                )
-            }
-
-            if (binding.etPassword.text.isEmpty()) {
-                binding.etPassword.error = "Password is required"
-                binding.etPassword.setBackgroundResource(R.drawable.et_border_error)
-                binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_error_password, 0, 0, 0
-                )
-            } else {
-                binding.etPassword.setBackgroundResource(R.drawable.et_border_selector)
-                binding.etPassword.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_password_selector, 0, 0, 0
-                )
-            }
+            validateField(binding.etEmail, R.drawable.ic_message_selector, R.drawable.ic_error_message, "Email is required")
+            validateField(binding.etPassword, R.drawable.ic_password_selector, R.drawable.ic_error_password, "Password is required")
         }
     }
+
+    private fun validateField(field: EditText, normalIcon: Int, errorIcon: Int, errorMessage: String) {
+        if (field.text.isEmpty()) {
+            setFieldError(field, errorIcon, errorMessage)
+        } else {
+            setFieldNormal(field, normalIcon)
+        }
+    }
+
+    private fun setFieldError(field: EditText, errorIcon: Int, errorMessage: String) {
+        field.error = errorMessage
+        field.setBackgroundResource(R.drawable.et_border_error)
+        field.setCompoundDrawablesWithIntrinsicBounds(errorIcon, 0, 0, 0)
+    }
+
+    private fun setFieldNormal(field: EditText, normalIcon: Int) {
+        field.setBackgroundResource(R.drawable.et_border_selector)
+        field.setCompoundDrawablesWithIntrinsicBounds(normalIcon, 0, 0, 0)
+    }
+
 }
 
 

@@ -21,5 +21,9 @@
         android:id="@+id/signUpFragment"
         android:name="com.training.codespire.RegisterFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

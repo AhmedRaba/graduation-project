@@ -1,59 +1,80 @@
 package com.training.codespire
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.training.codespire.databinding.FragmentRegisterBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+    ): View {
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
+
+
+
+        navigateToLogin()
+
+
+        checkRegister()
+
+
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun navigateToLogin() {
+        binding.tvRegSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+        }
     }
+
+
+    private fun checkRegister() {
+        binding.btnSingUp.setOnClickListener {
+            validateField(binding.etRegUsername, R.drawable.ic_user_selector, R.drawable.ic_error_user, "Username is required")
+            validateField(binding.etRegEmail, R.drawable.ic_message_selector, R.drawable.ic_error_message, "Email is required")
+            validateField(binding.etRegPassword, R.drawable.ic_password_selector, R.drawable.ic_error_password, "Password is required")
+
+            val password = binding.etRegPassword.text.toString()
+            val confirmPassword = binding.etRegConfirmPassword.text.toString()
+
+            if (confirmPassword.isEmpty()) {
+                setFieldError(binding.etRegConfirmPassword, R.drawable.ic_password_selector, R.drawable.ic_error_password, "Password is required")
+            } else if (password != confirmPassword) {
+                setFieldError(binding.etRegConfirmPassword, R.drawable.ic_password_selector, R.drawable.ic_error_password, "Password doesn't match")
+            } else {
+                setFieldNormal(binding.etRegConfirmPassword, R.drawable.ic_password_selector)
+            }
+        }
+    }
+
+    private fun validateField(field: EditText, normalIcon: Int, errorIcon: Int, errorMessage: String) {
+        if (field.text.isEmpty()) {
+            setFieldError(field, normalIcon, errorIcon, errorMessage)
+        } else {
+            setFieldNormal(field, normalIcon)
+        }
+    }
+
+    private fun setFieldError(field: EditText, normalIcon: Int, errorIcon: Int, errorMessage: String) {
+        field.error = errorMessage
+        field.setBackgroundResource(R.drawable.et_border_error)
+        field.setCompoundDrawablesWithIntrinsicBounds(errorIcon, 0, 0, 0)
+    }
+
+    private fun setFieldNormal(field: EditText, normalIcon: Int) {
+        field.setBackgroundResource(R.drawable.et_border_selector)
+        field.setCompoundDrawablesWithIntrinsicBounds(normalIcon, 0, 0, 0)
+    }
+
+
 }

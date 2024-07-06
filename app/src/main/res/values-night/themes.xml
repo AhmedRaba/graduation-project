@@ -3,9 +3,10 @@
     <style name="Base.Theme.Codespire" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
     </style>
-
-
 
     <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
         <item name="windowSplashScreenBackground">#37617A</item>
@@ -14,4 +15,41 @@
         <item name="postSplashScreenTheme">@style/Base.Theme.Codespire</item>
     </style>
 
+
+    <style name="CustomEditText">
+        <item name="android:background">@drawable/et_border_selector</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#9098B1</item>
+        <item name="android:layout_height">57dp</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColorHint">#9098B1</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+
+    <style name="CustomButton" >
+        <item name="cornerRadius">5dp</item>
+        <item name="backgroundTint">#40BFFF</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+
+    <style name="GreyTextView">
+        <item name="android:textColor">#9098B1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="BlueTextView">
+        <item name="android:textColor">#40BFFF</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="DarkBlueTextView">
+        <item name="android:textColor">#223263</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
 </resources>
