@@ -9,13 +9,16 @@
     android:padding="16dp"
     tools:context=".LoginFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_codespire" />
+        android:layout_marginTop="10dp"
+        android:importantForAccessibility="no"
+        android:text="Codespire"
+        android:textSize="40sp"
+        android:textColor="#2260FF"
+        style="@style/DarkBlueTextView"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_welcome"

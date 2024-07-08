@@ -44,19 +44,13 @@ class RegisterFragment : Fragment() {
     private fun checkRegister() {
         binding.btnRegister.setOnClickListener {
             validateField(
-                binding.etRegUsername,
-                binding.tvRegUsernameError,
-                "Username is required"
+                binding.etRegUsername, binding.tvRegUsernameError, "Username is required"
             )
             validateField(
-                binding.etRegEmail,
-                binding.tvRegEmailError,
-                "Email is required"
+                binding.etRegEmail, binding.tvRegEmailError, "Email is required"
             )
             validateField(
-                binding.etRegPassword,
-                binding.tvRegPasswordError,
-                "Password is required"
+                binding.etRegPassword, binding.tvRegPasswordError, "Password is required"
             )
 
             val password = binding.etRegPassword.text.toString()
@@ -79,13 +73,16 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        setupPasswordVisibilityToggle(binding.etRegPassword, R.drawable.ic_eye, R.drawable.ic_eye_off)
+        setupPasswordVisibilityToggle(
+            binding.etRegPassword, R.drawable.ic_eye, R.drawable.ic_eye_off
+        )
+        setupPasswordVisibilityToggle(
+            binding.etRegConfirmPassword, R.drawable.ic_eye, R.drawable.ic_eye_off
+        ) // Added for confirm password
     }
 
     private fun validateField(
-        field: EditText,
-        errorTextView: TextView,
-        errorMessage: String
+        field: EditText, errorTextView: TextView, errorMessage: String
     ) {
         if (field.text.isEmpty()) {
             setFieldError(field, errorTextView, errorMessage)
@@ -95,9 +92,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun setFieldError(
-        field: EditText,
-        errorTextView: TextView,
-        errorMessage: String
+        field: EditText, errorTextView: TextView, errorMessage: String
     ) {
         errorTextView.visibility = View.VISIBLE
         errorTextView.text = errorMessage
@@ -109,7 +104,9 @@ class RegisterFragment : Fragment() {
         field.setBackgroundResource(R.drawable.et_border_selector)
     }
 
-    private fun setupPasswordVisibilityToggle(passwordField: EditText, visibleIcon: Int, hiddenIcon: Int) {
+    private fun setupPasswordVisibilityToggle(
+        passwordField: EditText, visibleIcon: Int, hiddenIcon: Int
+    ) {
         passwordField.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val drawableEnd = 2 // index for drawableRight
@@ -118,7 +115,8 @@ class RegisterFragment : Fragment() {
                 if (drawable != null && event.rawX >= (passwordField.right - drawable.bounds.width())) {
                     val selection = passwordField.selectionEnd
                     if (passwordField.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                        passwordField.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                        passwordField.inputType =
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, hiddenIcon, 0)
                     } else {
                         passwordField.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -134,7 +132,6 @@ class RegisterFragment : Fragment() {
             }
         }
     }
-
 
 
 }

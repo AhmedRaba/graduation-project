@@ -9,9 +9,9 @@
     </style>
 
     <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
-        <item name="windowSplashScreenBackground">#37617A</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_codespire</item>
-        <item name="windowSplashScreenAnimationDuration">3000</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.Codespire</item>
     </style>
 
