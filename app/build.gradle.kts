@@ -27,7 +27,7 @@ android {
         }
     }
     buildFeatures {
-        viewBinding=true
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -56,4 +56,8 @@ dependencies {
 
     //    Splash screen API
     implementation(libs.androidx.core.splashscreen)
+
+    // data store
+    implementation(libs.androidx.datastore.preferences)
+
 }

@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.training.codespire.LoginFragment"
+        android:name="com.training.codespire.ui.frags.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.training.codespire.RegisterFragment"
+        android:name="com.training.codespire.ui.frags.RegisterFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_register" >
         <action

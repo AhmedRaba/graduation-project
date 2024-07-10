@@ -1,4 +1,4 @@
-package com.training.codespire
+package com.training.codespire.ui.frags
 
 import android.os.Bundle
 import android.text.InputType
@@ -10,60 +10,80 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.training.codespire.databinding.FragmentLoginBinding
+import com.training.codespire.R
+import com.training.codespire.databinding.FragmentRegisterBinding
 
-class LoginFragment : Fragment() {
-    private lateinit var binding: FragmentLoginBinding
+class RegisterFragment : Fragment() {
+
+    private lateinit var binding: FragmentRegisterBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
 
 
 
-        navToRegister()
+        navigateToLogin()
 
 
-
-        checkLogin()
+        checkRegister()
 
 
 
         return binding.root
     }
 
-    private fun navToHome() {
-
-    }
-
-    private fun navToRegister() {
-        binding.tvRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+    private fun navigateToLogin() {
+        binding.tvRegSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
     }
 
-    private fun checkLogin() {
-        binding.btnSignIn.setOnClickListener {
+
+    private fun checkRegister() {
+        binding.btnRegister.setOnClickListener {
             validateField(
-                binding.etEmail,
-                binding.tvEmailError,
-                "Email is required"
+                binding.etRegUsername, binding.tvRegUsernameError, "Username is required"
             )
             validateField(
-                binding.etPassword,
-                binding.tvPasswordError,
-                "Password is required"
+                binding.etRegEmail, binding.tvRegEmailError, "Email is required"
             )
+            validateField(
+                binding.etRegPassword, binding.tvRegPasswordError, "Password is required"
+            )
+
+            val password = binding.etRegPassword.text.toString()
+            val confirmPassword = binding.etRegConfirmPassword.text.toString()
+
+            if (confirmPassword.isEmpty()) {
+                setFieldError(
+                    binding.etRegConfirmPassword,
+                    binding.tvRegConfirmPasswordError,
+                    "Password is required"
+                )
+            } else if (password != confirmPassword) {
+                setFieldError(
+                    binding.etRegConfirmPassword,
+                    binding.tvRegConfirmPasswordError,
+                    "Password doesn't match"
+                )
+            } else {
+                setFieldNormal(binding.etRegConfirmPassword, binding.tvRegConfirmPasswordError)
+            }
         }
 
-        setupPasswordVisibilityToggle(binding.etPassword, R.drawable.ic_eye, R.drawable.ic_eye_off)
+        setupPasswordVisibilityToggle(
+            binding.etRegPassword, R.drawable.ic_eye, R.drawable.ic_eye_off
+        )
+        setupPasswordVisibilityToggle(
+            binding.etRegConfirmPassword, R.drawable.ic_eye, R.drawable.ic_eye_off
+        ) // Added for confirm password
     }
 
     private fun validateField(
-        field: EditText,
-        errorTextView: TextView,
-        errorMessage: String
+        field: EditText, errorTextView: TextView, errorMessage: String
     ) {
         if (field.text.isEmpty()) {
             setFieldError(field, errorTextView, errorMessage)
@@ -73,9 +93,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setFieldError(
-        field: EditText,
-        errorTextView: TextView,
-        errorMessage: String
+        field: EditText, errorTextView: TextView, errorMessage: String
     ) {
         errorTextView.visibility = View.VISIBLE
         errorTextView.text = errorMessage
@@ -88,9 +106,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupPasswordVisibilityToggle(
-        passwordField: EditText,
-        visibleIcon: Int,
-        hiddenIcon: Int
+        passwordField: EditText, visibleIcon: Int, hiddenIcon: Int
     ) {
         passwordField.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
@@ -120,6 +136,3 @@ class LoginFragment : Fragment() {
 
 
 }
-
-
-

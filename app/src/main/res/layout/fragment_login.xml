@@ -3,30 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".LoginFragment">
+    tools:context=".ui.frags.LoginFragment">
 
     <TextView
+        style="@style/DarkBlueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:importantForAccessibility="no"
         android:text="Codespire"
-        android:textSize="40sp"
         android:textColor="#2260FF"
-        style="@style/DarkBlueTextView"/>
+        android:textSize="40sp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_welcome"
         style="@style/DarkBlueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_gravity="start"
+        android:layout_marginTop="8dp"
         android:text="Login"
         android:textSize="30sp" />
 
@@ -35,8 +34,8 @@
         style="@style/GreyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_gravity="start"
+        android:layout_marginTop="16dp"
         android:text="Sign in to continue" />
 
     <com.google.android.material.textview.MaterialTextView
