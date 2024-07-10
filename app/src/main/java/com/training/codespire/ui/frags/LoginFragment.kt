@@ -1,5 +1,7 @@
 package com.training.codespire.ui.frags
 
+import SharedPreferencesUtil
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -10,30 +12,26 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.training.codespire.MainActivity
 import com.training.codespire.R
 import com.training.codespire.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
+    private lateinit var sharedPreferencesUtil: SharedPreferencesUtil
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
-
-
+        sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
 
         navToRegister()
-
-
-
         checkLogin()
-
-
 
         return binding.root
     }
-
 
     private fun navToRegister() {
         binding.tvRegister.setOnClickListener {
@@ -43,19 +41,29 @@ class LoginFragment : Fragment() {
 
     private fun checkLogin() {
         binding.btnSignIn.setOnClickListener {
-            validateField(
-                binding.etEmail,
-                binding.tvEmailError,
-                "Email is required"
-            )
-            validateField(
-                binding.etPassword,
-                binding.tvPasswordError,
-                "Password is required"
-            )
+            validateField(binding.etEmail, binding.tvEmailError, "Email is required")
+            validateField(binding.etPassword, binding.tvPasswordError, "Password is required")
+
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+
+            // Simulated successful login for demonstration
+            if (email == "1" && password == "1") {
+                // Save login state using SharedPreferencesUtil
+                sharedPreferencesUtil.isLoggedIn = true
+
+                // Navigate to MainActivity
+                navigateToMainActivity()
+            }
         }
 
         setupPasswordVisibilityToggle(binding.etPassword, R.drawable.ic_eye, R.drawable.ic_eye_off)
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun validateField(
@@ -115,8 +123,4 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
-
 }
-
-
