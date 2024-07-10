@@ -1,9 +1,9 @@
-package com.training.codespire.data.datastore
+package com.training.codespire
 
 import android.content.Context
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.map
 class DataStoreManager(private val context: Context) {
 
     private val Context.dataStore by preferencesDataStore("user_prefs")
-
 
     companion object {
         val LOGGED_IN_KEY: Preferences.Key<Boolean> = booleanPreferencesKey("is_logged_in")
@@ -26,7 +25,5 @@ class DataStoreManager(private val context: Context) {
         context.dataStore.edit { preferences ->
             preferences[LOGGED_IN_KEY] = isLoggedIn
         }
-
-
     }
 }

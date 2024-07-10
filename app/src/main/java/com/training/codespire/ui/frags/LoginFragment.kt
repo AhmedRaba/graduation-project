@@ -34,9 +34,6 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    private fun navToHome() {
-
-    }
 
     private fun navToRegister() {
         binding.tvRegister.setOnClickListener {
