@@ -25,11 +25,16 @@ class LoginFragment : Fragment() {
         navToRegister()
 
 
+
         checkLogin()
 
 
 
         return binding.root
+    }
+
+    private fun navToHome() {
+
     }
 
     private fun navToRegister() {
@@ -82,7 +87,11 @@ class LoginFragment : Fragment() {
         field.setBackgroundResource(R.drawable.et_border_selector)
     }
 
-    private fun setupPasswordVisibilityToggle(passwordField: EditText, visibleIcon: Int, hiddenIcon: Int) {
+    private fun setupPasswordVisibilityToggle(
+        passwordField: EditText,
+        visibleIcon: Int,
+        hiddenIcon: Int
+    ) {
         passwordField.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val drawableEnd = 2 // index for drawableRight
@@ -91,7 +100,8 @@ class LoginFragment : Fragment() {
                 if (drawable != null && event.rawX >= (passwordField.right - drawable.bounds.width())) {
                     val selection = passwordField.selectionEnd
                     if (passwordField.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                        passwordField.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                        passwordField.inputType =
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, hiddenIcon, 0)
                     } else {
                         passwordField.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -107,8 +117,6 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
-
 
 
 }

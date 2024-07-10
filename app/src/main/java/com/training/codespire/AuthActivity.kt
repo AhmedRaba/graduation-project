@@ -13,9 +13,5 @@ class AuthActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(R.layout.activity_auth)
 
-
-
-
-
     }
 }
