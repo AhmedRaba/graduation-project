@@ -1,5 +1,6 @@
 package com.training.codespire.ui.frags
 
+import com.training.codespire.MainActivity
 import SharedPreferencesUtil
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +13,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.training.codespire.MainActivity
 import com.training.codespire.R
 import com.training.codespire.databinding.FragmentLoginBinding
 
@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
                 // Save login state using SharedPreferencesUtil
                 sharedPreferencesUtil.isLoggedIn = true
 
-                // Navigate to MainActivity
+                // Navigate to com.training.codespire.MainActivity
                 navigateToMainActivity()
             }
         }

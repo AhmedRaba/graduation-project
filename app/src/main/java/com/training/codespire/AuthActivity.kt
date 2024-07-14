@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.training.codespire.databinding.ActivityAuthBinding
 
 private const val TAG = "AuthActivity"
 class AuthActivity : AppCompatActivity() {

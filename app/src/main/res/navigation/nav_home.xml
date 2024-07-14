@@ -8,6 +8,32 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.training.codespire.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.training.codespire.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.training.codespire.WishlistFragment"
+        android:label="Wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/myProjectsFragment"
+        android:name="com.training.codespire.MyProjectsFragment"
+        android:label="My Projects"
+        tools:layout="@layout/fragment_my_projects" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.training.codespire.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+
 </navigation>
