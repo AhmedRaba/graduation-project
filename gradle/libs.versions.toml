@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.0"
+avatarviewCoil = "1.0.4"
 coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.1"
 kotlin = "1.9.0"
@@ -21,6 +22,7 @@ lifecycleViewmodelKtx = "2.8.3"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+avatarview-coil = { module = "io.getstream:avatarview-coil", version.ref = "avatarviewCoil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

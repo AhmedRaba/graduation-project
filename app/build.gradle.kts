@@ -54,10 +54,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Avatar
+    implementation (libs.avatarview.coil)
+
     //    Splash screen API
     implementation(libs.androidx.core.splashscreen)
 
     // data store
     implementation(libs.androidx.datastore.preferences)
+
 
 }
