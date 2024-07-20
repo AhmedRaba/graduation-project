@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -8,118 +10,147 @@
     android:padding="16dp"
     tools:context=".ui.frags.LoginFragment">
 
-    <TextView
-        style="@style/DarkBlueTextView"
+    <ProgressBar
+        android:id="@+id/progress_bar_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:importantForAccessibility="no"
-        android:text="Codespire"
-        android:textColor="#2260FF"
-        android:textSize="40sp" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_welcome"
-        style="@style/DarkBlueTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="8dp"
-        android:text="Login"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tv_sign_in"
-        style="@style/GreyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:text="Sign in to continue" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_email"
-        style="@style/DarkBlueTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Email"
-        android:textSize="22sp" />
-
-    <EditText
-        android:id="@+id/et_email"
-        style="@style/CustomEditText"
-        android:layout_marginTop="10dp"
-        android:autofillHints="emailAddress"
-        android:hint="Enter your email"
-        android:inputType="textEmailAddress" />
-
-    <TextView
-        android:id="@+id/tv_email_error"
-        style="@style/ErrorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email is required"
-        android:visibility="gone" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_password"
-        style="@style/DarkBlueTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Password"
-        android:textSize="22sp" />
-
-    <EditText
-        android:id="@+id/et_password"
-        style="@style/CustomEditText"
-        android:layout_marginTop="10dp"
-        android:autofillHints="password"
-        android:drawableEnd="@drawable/ic_eye_off"
-        android:hint="Enter password"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:id="@+id/tv_password_error"
-        style="@style/ErrorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password is required"
-        android:visibility="gone" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_sign_in"
-        style="@style/CustomButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:text="Login" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:id="@+id/login_fragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
 
         <TextView
+            style="@style/DarkBlueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:importantForAccessibility="no"
+            android:text="Codespire"
+            android:textColor="#2260FF"
+            android:textSize="40sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_welcome"
+            style="@style/DarkBlueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="8dp"
+            android:text="Login"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tv_sign_in"
             style="@style/GreyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account? "
-            android:textAlignment="textEnd" />
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:text="Sign in to continue" />
 
-        <TextView
-            android:id="@+id/tv_register"
-            style="@style/BlueTextView"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_email"
+            style="@style/DarkBlueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="Register" />
+            android:layout_marginTop="20dp"
+            android:text="Email"
+            android:textSize="22sp" />
 
+        <EditText
+            android:id="@+id/et_email"
+            style="@style/CustomEditText"
+            android:layout_marginTop="10dp"
+            android:autofillHints="emailAddress"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_email_error"
+            style="@style/ErrorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email is required"
+            android:visibility="gone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_password"
+            style="@style/DarkBlueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Password"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            style="@style/CustomEditText"
+            android:layout_marginTop="10dp"
+            android:autofillHints="password"
+            android:drawableEnd="@drawable/ic_eye_off"
+            android:hint="Enter password"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/tv_password_error"
+            style="@style/ErrorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password is required"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_in"
+            style="@style/CustomButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Login" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/GreyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account? "
+                android:textAlignment="textEnd" />
+
+            <TextView
+                android:id="@+id/tv_register"
+                style="@style/BlueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Register" />
+
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

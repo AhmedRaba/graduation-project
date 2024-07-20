@@ -1,10 +1,9 @@
 package com.training.codespire
 
-import SharedPreferencesUtil
+import com.training.codespire.data.datastore.SharedPreferencesUtil
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
@@ -25,7 +24,7 @@ class AuthActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Check if user is already logged in
+
         if (sharedPreferencesUtil.isLoggedIn) {
             navigateToMainActivity()
         }
@@ -39,29 +38,5 @@ class AuthActivity : AppCompatActivity() {
         finish()
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e(TAG, "onStart: ", )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e(TAG, "onResume: ", )
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e(TAG, "onPause: ", )
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e(TAG, "onStop: ", )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e(TAG, "onDestroy: ", )
-    }
     
 }

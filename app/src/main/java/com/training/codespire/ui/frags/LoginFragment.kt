@@ -1,7 +1,7 @@
 package com.training.codespire.ui.frags
 
 import com.training.codespire.MainActivity
-import SharedPreferencesUtil
+import com.training.codespire.data.datastore.SharedPreferencesUtil
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -11,14 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.training.codespire.R
+import com.training.codespire.data.viewmodel.AuthViewmodel
 import com.training.codespire.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var sharedPreferencesUtil: SharedPreferencesUtil
+    private lateinit var authViewmodel: AuthViewmodel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +31,28 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
 
+        authViewmodel = ViewModelProvider(this)[AuthViewmodel::class.java]
+
+        authViewmodel.loginResponseLiveData.observe(viewLifecycleOwner) { loginResponse ->
+            showLoading()
+            loginResponse?.let {
+                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                sharedPreferencesUtil.isLoggedIn=true
+                navigateToMainActivity()
+            }
+        }
+
+        authViewmodel.errorLiveData.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                hideLoading()
+                showError(error)
+            }
+        }
+
+
+
         navToRegister()
+
         checkLogin()
 
         return binding.root
@@ -35,25 +60,19 @@ class LoginFragment : Fragment() {
 
     private fun navToRegister() {
         binding.tvRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 
     private fun checkLogin() {
         binding.btnSignIn.setOnClickListener {
-            validateField(binding.etEmail, binding.tvEmailError, "Email is required")
-            validateField(binding.etPassword, binding.tvPasswordError, "Password is required")
-
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            // Simulated successful login for demonstration
-            if (email == "1" && password == "1") {
-                // Save login state using SharedPreferencesUtil
-                sharedPreferencesUtil.isLoggedIn = true
 
-                // Navigate to com.training.codespire.MainActivity
-                navigateToMainActivity()
+
+            if (validateInput(email, password)) {
+                authViewmodel.loginUser(email, password)
             }
         }
 
@@ -61,21 +80,30 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToMainActivity() {
+        showLoading()
         val intent = Intent(requireContext(), MainActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
     }
 
-    private fun validateField(
-        field: EditText,
-        errorTextView: TextView,
-        errorMessage: String
-    ) {
-        if (field.text.isEmpty()) {
-            setFieldError(field, errorTextView, errorMessage)
+    private fun validateInput(email: String, password: String): Boolean {
+        var isValid = true
+
+        if (email.isEmpty()) {
+            setFieldError(binding.etEmail, binding.tvEmailError, "Email is required")
+            isValid = false
         } else {
-            setFieldNormal(field, errorTextView)
+            setFieldNormal(binding.etEmail, binding.tvEmailError)
         }
+
+        if (password.isEmpty()) {
+            setFieldError(binding.etPassword, binding.tvPasswordError, "Password is required")
+            isValid = false
+        } else {
+            setFieldNormal(binding.etPassword, binding.tvPasswordError)
+        }
+
+        return isValid
     }
 
     private fun setFieldError(
@@ -122,5 +150,21 @@ class LoginFragment : Fragment() {
                 false
             }
         }
+    }
+
+    private fun showError(error: String) {
+
+        binding.tvEmailError.visibility = View.VISIBLE
+        binding.tvEmailError.text = "Invalid email or password"
+
+    }
+
+    private fun showLoading() {
+        binding.loginFragment.visibility = View.GONE
+        binding.progressBarLogin.visibility = View.VISIBLE
+    }
+    private fun hideLoading() {
+        binding.loginFragment.visibility = View.VISIBLE
+        binding.progressBarLogin.visibility = View.GONE
     }
 }

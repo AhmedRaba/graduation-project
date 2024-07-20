@@ -1,183 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.frags.RegisterFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progress_bar_register"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-        <TextView
-            style="@style/DarkBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:importantForAccessibility="no"
-            android:text="Codespire"
-            android:textColor="#2260FF"
-            android:textSize="40sp" />
 
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/DarkBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="16dp"
-            android:text="Register"
-            android:textSize="30sp" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/GreyTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="10dp"
-            android:text="Create a new account" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/DarkBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="20dp"
-            android:text="Username"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_reg_username"
-            style="@style/CustomEditText"
-            android:layout_marginTop="10dp"
-            android:autofillHints="name"
-            android:hint="Full Name"
-            android:inputType="textPersonName|textCapWords" />
-
-        <TextView
-            android:id="@+id/tv_reg_username_error"
-            style="@style/ErrorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Username is required"
-            android:visibility="gone" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/DarkBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="20dp"
-            android:text="Email"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_reg_email"
-            style="@style/CustomEditText"
-            android:layout_marginTop="8dp"
-            android:autofillHints="emailAddress"
-            android:hint="Your Email"
-            android:inputType="textEmailAddress" />
-
-        <TextView
-            android:id="@+id/tv_reg_email_error"
-            style="@style/ErrorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Email is required"
-            android:visibility="gone" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/DarkBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="20dp"
-            android:text="Password"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_reg_password"
-            style="@style/CustomEditText"
-            android:layout_marginTop="8dp"
-            android:autofillHints="password"
-            android:drawableEnd="@drawable/ic_eye_off"
-            android:hint="Password"
-            android:inputType="textPassword" />
-
-        <TextView
-            android:id="@+id/tv_reg_password_error"
-            style="@style/ErrorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Password is required"
-            android:visibility="gone" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/DarkBlueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="20dp"
-            android:text="Confirm password"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_reg_confirm_password"
-            style="@style/CustomEditText"
-            android:layout_marginTop="8dp"
-            android:autofillHints="password"
-            android:drawableEnd="@drawable/ic_eye_off"
-            android:hint="Confirm Password"
-            android:inputType="textPassword" />
-
-        <TextView
-            android:id="@+id/tv_reg_confirm_password_error"
-            style="@style/ErrorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:visibility="gone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_register"
-            style="@style/CustomButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="8dp"
-            android:text="Register" />
 
         <LinearLayout
+            android:id="@+id/register_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                style="@style/DarkBlueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:importantForAccessibility="no"
+                android:text="Codespire"
+                android:textColor="#2260FF"
+                android:textSize="40sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/DarkBlueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="16dp"
+                android:text="Register"
+                android:textSize="30sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/GreyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="have an account? "
-                android:textAlignment="textEnd" />
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:text="Create a new account" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_reg_sign_in"
-                style="@style/BlueTextView"
+                style="@style/DarkBlueTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="Sign In" />
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:text="Username"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_reg_username"
+                style="@style/CustomEditText"
+                android:layout_marginTop="10dp"
+                android:autofillHints="name"
+                android:hint="Full Name"
+                android:inputType="textPersonName|textCapWords" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/tv_reg_username_error"
+                style="@style/ErrorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Username is required"
+                android:visibility="gone" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/DarkBlueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:text="Email"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_reg_email"
+                style="@style/CustomEditText"
+                android:layout_marginTop="8dp"
+                android:autofillHints="emailAddress"
+                android:hint="Your Email"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/tv_reg_email_error"
+                style="@style/ErrorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Email is required"
+                android:visibility="gone" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/DarkBlueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:text="Password"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_reg_password"
+                style="@style/CustomEditText"
+                android:layout_marginTop="8dp"
+                android:autofillHints="password"
+                android:drawableEnd="@drawable/ic_eye_off"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/tv_reg_password_error"
+                style="@style/ErrorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Password is required"
+                android:visibility="gone" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/DarkBlueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:text="Confirm password"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_reg_confirm_password"
+                style="@style/CustomEditText"
+                android:layout_marginTop="8dp"
+                android:autofillHints="password"
+                android:drawableEnd="@drawable/ic_eye_off"
+                android:hint="Confirm Password"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/tv_reg_confirm_password_error"
+                style="@style/ErrorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_register"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:text="Register" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GreyTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="have an account? "
+                    android:textAlignment="textEnd" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_reg_sign_in"
+                    style="@style/BlueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Sign In" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
