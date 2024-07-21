@@ -5,6 +5,6 @@
 
     <!-- Vector drawable centered in the screen -->
     <item
-        android:drawable="@drawable/iv_codespire"
+        android:drawable="@drawable/iv_dev_store_logo"
         android:gravity="center"/>
 </layer-list>

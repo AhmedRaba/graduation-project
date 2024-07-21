@@ -36,16 +36,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-            <TextView
-                style="@style/DarkBlueTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:importantForAccessibility="no"
-                android:text="Codespire"
-                android:textColor="#2260FF"
-                android:textSize="40sp" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/iv_dev_store_logo"
+                />
+
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/DarkBlueTextView"
@@ -201,7 +200,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_reg_sign_in"
-                    style="@style/BlueTextView"
+                    style="@style/OrangeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"

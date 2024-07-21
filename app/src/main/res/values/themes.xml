@@ -23,36 +23,37 @@
     <style name="CustomEditText">
         <item name="android:background">@drawable/et_border_selector</item>
         <item name="android:padding">10dp</item>
-        <item name="android:textColor">#9098B1</item>
+        <item name="android:textCursorDrawable">@color/orange</item>
+        <item name="android:textColor">@color/blueBlack</item>
         <item name="android:layout_height">57dp</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textColorHint">#9098B1</item>
+        <item name="android:textColorHint">#888888</item>
         <item name="android:drawablePadding">10dp</item>
     </style>
 
     <style name="CustomButton">
         <item name="cornerRadius">5dp</item>
-        <item name="backgroundTint">#2260FF</item>
+        <item name="backgroundTint">@color/orange</item>
         <item name="android:textColor">@color/white</item>
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
 
 
     <style name="GreyTextView">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/blueBlack</item>
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/roboto</item>
     </style>
 
-    <style name="BlueTextView">
-        <item name="android:textColor">#2260FF</item>
+    <style name="OrangeTextView">
+        <item name="android:textColor">@color/orange</item>
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
 
     <style name="DarkBlueTextView">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/blueBlack</item>
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
