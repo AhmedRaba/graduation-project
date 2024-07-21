@@ -1,10 +1,8 @@
 package com.training.codespire
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import com.training.codespire.databinding.ActivityCategoryBinding
 
@@ -16,29 +14,33 @@ class CategoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val navHostFragment=supportFragmentManager
+        val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.category_fragment_container) as NavHostFragment
+
         val navController = navHostFragment.navController
 
         val categoryId = intent.getIntExtra("CATEGORY_ID", -1)
+        Log.e("CategoryActivity", categoryId.toString())
 
-        val startDestination = getStartDestination(categoryId)
 
-        navController.setGraph(R.navigation.nav_category, startDestination)
-
-    }
-
-    private fun getStartDestination(categoryId: Int): Bundle {
-        return when (categoryId) {
-            1 -> Bundle().apply { putInt("startDestination", R.id.frontEndFragment) }
-            2 -> Bundle().apply { putInt("startDestination", R.id.backEndFragment) }
-            3 -> Bundle().apply { putInt("startDestination", R.id.aiFragment) }
-            4 -> Bundle().apply { putInt("startDestination", R.id.mobileFragment) }
-            5 -> Bundle().apply { putInt("startDestination", R.id.webSiteFragment) }
-            6 -> Bundle().apply { putInt("startDestination", R.id.desktopAppFragment) }
-            13 -> Bundle().apply { putInt("startDestination", R.id.webSiteFragment) }
-            else -> Bundle().apply { putInt("startDestination", R.id.freeFragment) }
+        if (categoryId != -1) {
+            val startDestination = when (categoryId) {
+                1 -> R.id.frontEndFragment
+                2 -> R.id.backEndFragment
+                3 -> R.id.aiFragment
+                4 -> R.id.mobileFragment
+                5 -> R.id.webSiteFragment
+                6 -> R.id.desktopAppFragment
+                13 -> R.id.freeFragment
+                else -> R.id.aiFragment // Default start destination
+            }
+            val navGraph = navController.navInflater.inflate(R.navigation.nav_category)
+            navGraph.setStartDestination(startDestination)
+            navController.graph = navGraph
+        }else{
+            Log.e("CategoryActivity", "Invalid category ID")
         }
+
     }
 
 }
