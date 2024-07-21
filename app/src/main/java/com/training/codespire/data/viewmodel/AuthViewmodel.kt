@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.data.repos.AuthRepository
 import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
@@ -17,11 +18,11 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
 
     private val repository = AuthRepository(application)
 
-
     val registerResponseLiveData = MutableLiveData<RegisterResponse>()
     val loginResponseLiveData = MutableLiveData<LoginResponse>()
     val logoutResponseLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<String>()
+
 
     fun registerUser(username: String, email: String, password: String, confirmPassword: String) {
         viewModelScope.launch {
@@ -51,6 +52,7 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     loginResponseLiveData.postValue(loginResponse!!)
+                    val username = loginResponse.user.name
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
                     errorLiveData.postValue(errorMessage)

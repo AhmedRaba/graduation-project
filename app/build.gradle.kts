@@ -54,6 +54,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //  Avatar
+    implementation (libs.avatarview.coil.v107)
 
     //  Splash screen API
     implementation(libs.androidx.core.splashscreen)

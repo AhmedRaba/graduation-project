@@ -9,7 +9,9 @@
         android:id="@+id/homeFragment"
         android:name="com.training.codespire.ui.frags.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"

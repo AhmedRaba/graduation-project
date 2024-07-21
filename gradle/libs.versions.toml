@@ -1,6 +1,7 @@
 [versions]
 agp = "8.4.0"
 avatarviewCoil = "1.0.4"
+avatarviewCoilVersion = "1.0.7"
 coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.1"
 kotlin = "1.9.0"
@@ -24,6 +25,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 avatarview-coil = { module = "io.getstream:avatarview-coil", version.ref = "avatarviewCoil" }
+avatarview-coil-v107 = { module = "io.getstream:avatarview-coil", version.ref = "avatarviewCoilVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

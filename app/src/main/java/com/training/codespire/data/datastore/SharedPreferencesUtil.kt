@@ -9,6 +9,7 @@ class SharedPreferencesUtil(context: Context) {
         private const val PREFS_FILENAME = "MyPrefs"
         private const val KEY_IS_LOGGED_IN = "isLoggedIn"
         private const val KEY_TOKEN = "token"
+        private const val KEY_USERNAME = "username"
     }
 
     private val sharedPreferences: SharedPreferences =
@@ -21,6 +22,11 @@ class SharedPreferencesUtil(context: Context) {
     var token: String?
         get() = sharedPreferences.getString(KEY_TOKEN, null)
         set(value) = sharedPreferences.edit().putString(KEY_TOKEN, value).apply()
+
+    var username: String?
+        get() = sharedPreferences.getString(KEY_USERNAME, null)
+        set(value) = sharedPreferences.edit().putString(KEY_USERNAME, value).apply()
+
 
     fun clear() {
         sharedPreferences.edit().clear().apply()

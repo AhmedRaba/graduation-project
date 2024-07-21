@@ -1,18 +1,21 @@
 package com.training.codespire.ui.frags
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.training.codespire.AuthActivity
 import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.data.viewmodel.AuthViewmodel
 import com.training.codespire.databinding.FragmentProfileBinding
+import kotlin.random.Random
 
 class ProfileFragment : Fragment() {
 
@@ -28,7 +31,6 @@ class ProfileFragment : Fragment() {
         sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
         authViewModel = ViewModelProvider(this)[AuthViewmodel::class.java]
 
-        // Observe the logout response LiveData
         authViewModel.logoutResponseLiveData.observe(viewLifecycleOwner) { isLoggedOut ->
             hideLoading()
             if (isLoggedOut) {
@@ -54,6 +56,10 @@ class ProfileFragment : Fragment() {
             authViewModel.logoutUser()
         }
 
+
+
+        setUsername()
+
         return binding.root
     }
 
@@ -67,8 +73,27 @@ class ProfileFragment : Fragment() {
         binding.profileFragment.visibility = View.GONE
         binding.progressBarProfile.visibility = View.VISIBLE
     }
+
     private fun hideLoading() {
         binding.profileFragment.visibility = View.VISIBLE
         binding.progressBarProfile.visibility = View.GONE
     }
+
+    private fun setUsername() {
+        binding.tvProfileUsername.text = sharedPreferencesUtil.username
+        val firstLetter = sharedPreferencesUtil.username?.firstOrNull().toString()
+        binding.profileAvatar.avatarInitials = firstLetter
+        binding.profileAvatar.avatarInitialsBackgroundColor = getRandomColor()
+    }
+
+    private fun getRandomColor(): Int {
+        val random =Random
+        return Color.argb(
+            255, // alpha
+            random.nextInt(256), // red
+            random.nextInt(256), // green
+            random.nextInt(256) // blue
+        )
+    }
+
 }

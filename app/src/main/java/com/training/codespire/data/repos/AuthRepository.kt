@@ -26,6 +26,7 @@ class AuthRepository(private val context: Context) {
         if (response.isSuccessful) {
             response.body()?.let { loginResponse ->
                 sharedPreferencesUtil.token = loginResponse.token
+                sharedPreferencesUtil.username = loginResponse.user.name
                 sharedPreferencesUtil.isLoggedIn = true
             }
         }

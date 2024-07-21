@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_category"
+    app:startDestination="@id/aiFragment">
+
+    <fragment
+        android:id="@+id/aiFragment"
+        android:name="com.training.codespire.ui.frags.categories.AiFragment"
+        android:label="fragment_ai"
+        tools:layout="@layout/fragment_ai" />
+    <fragment
+        android:id="@+id/backEndFragment"
+        android:name="com.training.codespire.ui.frags.categories.BackEndFragment"
+        android:label="fragment_back_end"
+        tools:layout="@layout/fragment_back_end" />
+    <fragment
+        android:id="@+id/desktopAppFragment"
+        android:name="com.training.codespire.ui.frags.categories.DesktopAppFragment"
+        android:label="fragment_desktop_app"
+        tools:layout="@layout/fragment_desktop_app" />
+    <fragment
+        android:id="@+id/freeFragment"
+        android:name="com.training.codespire.ui.frags.categories.FreeFragment"
+        android:label="fragment_free"
+        tools:layout="@layout/fragment_free" />
+    <fragment
+        android:id="@+id/frontEndFragment"
+        android:name="com.training.codespire.ui.frags.categories.FrontEndFragment"
+        android:label="fragment_front_end"
+        tools:layout="@layout/fragment_front_end" />
+    <fragment
+        android:id="@+id/mobileFragment"
+        android:name="com.training.codespire.ui.frags.categories.MobileFragment"
+        android:label="fragment_mobile"
+        tools:layout="@layout/fragment_mobile" />
+    <fragment
+        android:id="@+id/webSiteFragment"
+        android:name="com.training.codespire.ui.frags.categories.WebSiteFragment"
+        android:label="fragment_web_site"
+        tools:layout="@layout/fragment_web_site" />
+</navigation>
