@@ -1,4 +1,4 @@
-package com.training.codespire.network
+package com.training.codespire.network.auth
 
 
 import com.google.gson.annotations.SerializedName

@@ -14,6 +14,7 @@
         android:id="@+id/progress_bar_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:indeterminateTint="@color/orange"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +39,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/iv_dev_store_logo"
-            />
+            android:src="@drawable/iv_dev_store_logo" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_welcome"

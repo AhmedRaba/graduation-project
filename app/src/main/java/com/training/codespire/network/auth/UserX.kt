@@ -1,4 +1,4 @@
-package com.training.codespire.network
+package com.training.codespire.network.auth
 
 data class UserX(
     val created_at: String,

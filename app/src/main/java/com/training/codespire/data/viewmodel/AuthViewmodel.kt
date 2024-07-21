@@ -4,13 +4,12 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.training.codespire.data.repos.AuthRepository
-import com.training.codespire.network.LoginRequest
-import com.training.codespire.network.LoginResponse
-import com.training.codespire.network.RegisterRequest
-import com.training.codespire.network.RegisterResponse
+import com.training.codespire.network.auth.LoginRequest
+import com.training.codespire.network.auth.LoginResponse
+import com.training.codespire.network.auth.RegisterRequest
+import com.training.codespire.network.auth.RegisterResponse
 import kotlinx.coroutines.launch
 import retrofit2.Response
 

@@ -1,5 +1,9 @@
 package com.training.codespire.network
 
+import com.training.codespire.network.auth.LoginRequest
+import com.training.codespire.network.auth.LoginResponse
+import com.training.codespire.network.auth.RegisterRequest
+import com.training.codespire.network.auth.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
@@ -15,6 +19,9 @@ interface ApiService {
     suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
     @POST("logout")
-    suspend fun logoutUser(@Header("Authorization") token:String): Response<Void>
+    suspend fun logoutUser(@Header("Authorization") token: String): Response<Void>
+
+
+
 
 }

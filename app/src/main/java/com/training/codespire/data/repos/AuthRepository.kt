@@ -3,10 +3,10 @@ package com.training.codespire.data.repos
 import android.content.Context
 import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.network.ApiService
-import com.training.codespire.network.LoginRequest
-import com.training.codespire.network.LoginResponse
-import com.training.codespire.network.RegisterRequest
-import com.training.codespire.network.RegisterResponse
+import com.training.codespire.network.auth.LoginRequest
+import com.training.codespire.network.auth.LoginResponse
+import com.training.codespire.network.auth.RegisterRequest
+import com.training.codespire.network.auth.RegisterResponse
 import com.training.codespire.network.RetrofitClient
 import retrofit2.Response
 
