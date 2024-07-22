@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.training.codespire.CategoryActivity
+import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-
+    private lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,6 +21,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        sharedPreferencesUtil=SharedPreferencesUtil(requireContext())
 
 
         navigateToCategory()
@@ -32,32 +34,32 @@ class HomeFragment : Fragment() {
 
 
         binding.ivFrontEnd.setOnClickListener {
-            openCategoryActivity(1)
+            openProductFragment(1)
         }
         binding.ivBackEnd.setOnClickListener {
-            openCategoryActivity(2)
+            openProductFragment(2)
         }
         binding.ivAi.setOnClickListener {
-            openCategoryActivity(3)
+            openProductFragment(3)
         }
         binding.ivMobile.setOnClickListener {
-            openCategoryActivity(4)
+            openProductFragment(4)
         }
         binding.ivWebsite.setOnClickListener {
-            openCategoryActivity(5)
+            openProductFragment(5)
         }
         binding.ivDesktop.setOnClickListener {
-            openCategoryActivity(6)
+            openProductFragment(6)
         }
         binding.ivFree.setOnClickListener {
-            openCategoryActivity(13)
+            openProductFragment(13)
         }
 
     }
 
-    private fun openCategoryActivity(categoryId: Int) {
+    private fun openProductFragment(categoryId: Int) {
         val intent = Intent(requireContext(), CategoryActivity::class.java).apply {
-            putExtra("CATEGORY_ID", categoryId)
+            sharedPreferencesUtil.categoryId=categoryId
         }
         startActivity(intent)
     }

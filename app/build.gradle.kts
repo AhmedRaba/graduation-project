@@ -57,6 +57,9 @@ dependencies {
     //  Avatar
     implementation (libs.avatarview.coil.v107)
 
+    //  Glide
+    implementation (libs.glide)
+
     //  Splash screen API
     implementation(libs.androidx.core.splashscreen)
 
@@ -66,6 +69,7 @@ dependencies {
     //  Retorfit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+
 
 
 

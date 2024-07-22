@@ -8,6 +8,8 @@ import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
 import com.training.codespire.network.RetrofitClient
+import com.training.codespire.network.all_products.AllProductsResponse
+import com.training.codespire.network.products.CategoryResponse
 import retrofit2.Response
 
 class AuthRepository(private val context: Context) {
@@ -41,6 +43,21 @@ class AuthRepository(private val context: Context) {
         }
         return response
     }
+
+    suspend fun getProductsByCategory():Response<CategoryResponse>{
+        val token=sharedPreferencesUtil.token
+        val categoryId=sharedPreferencesUtil.categoryId
+        return api.getProductsByCategory("Bearer $token",categoryId)
+
+    }
+
+
+    suspend fun getAllProducts(): Response<AllProductsResponse> {
+        val token=sharedPreferencesUtil.token
+        return api.getAllProducts("Bearer $token")
+    }
+
+
 
 
 }

@@ -5,12 +5,13 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.data.repos.AuthRepository
+import com.training.codespire.network.all_products.AllProductsData
 import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.products.ProductData
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -21,6 +22,8 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
     val registerResponseLiveData = MutableLiveData<RegisterResponse>()
     val loginResponseLiveData = MutableLiveData<LoginResponse>()
     val logoutResponseLiveData = MutableLiveData<Boolean>()
+    val productsByCategoryResponseLiveData = MutableLiveData<List<ProductData>>()
+    val searchResultsLiveAllProductsData = MutableLiveData<List<AllProductsData>>()
     val errorLiveData = MutableLiveData<String>()
 
 
@@ -83,4 +86,50 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+
+    fun getProductsByCategory() {
+        viewModelScope.launch {
+            try {
+                val response = repository.getProductsByCategory()
+                if (response.isSuccessful) {
+                    val categoryResponse = response.body()
+                    productsByCategoryResponseLiveData.postValue(
+                        categoryResponse?.data ?: emptyList()
+                    )
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
+
+    fun searchProducts(query: String) {
+        viewModelScope.launch {
+            try {
+                val response = repository.getAllProducts()
+                if (response.isSuccessful) {
+                    val allProductsResponse = response.body()?.data ?: emptyList()
+                    val filteredProducts = allProductsResponse.filter { product ->
+                        product.name.contains(
+                            query,
+                            ignoreCase = true
+                        ) || product.description.contains(query, ignoreCase = true)
+                    }
+                    searchResultsLiveAllProductsData.postValue(filteredProducts)
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+
+        }
+
+
+    }
 }

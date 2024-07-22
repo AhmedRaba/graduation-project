@@ -4,6 +4,7 @@ avatarviewCoil = "1.0.4"
 avatarviewCoilVersion = "1.0.7"
 coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.1"
+glide = "4.13.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -27,6 +28,7 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 avatarview-coil = { module = "io.getstream:avatarview-coil", version.ref = "avatarviewCoil" }
 avatarview-coil-v107 = { module = "io.getstream:avatarview-coil", version.ref = "avatarviewCoilVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
