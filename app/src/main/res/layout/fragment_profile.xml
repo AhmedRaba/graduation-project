@@ -44,12 +44,12 @@
 
                 <TextView
                     android:id="@+id/toolbar_title"
+                    style="@style/DarkBlueTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:text="Settings"
-                    style="@style/DarkBlueTextView"
                     android:textSize="30sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -66,34 +66,35 @@
                 android:orientation="vertical">
 
 
-                        <io.getstream.avatarview.AvatarView
-                            android:id="@+id/profile_avatar"
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            android:layout_gravity="center"
-                            app:avatarViewInitialsTextColor="@color/white"
-                            app:avatarViewInitialsTextSize="21sp"
-                            app:avatarViewInitialsTextSizeRatio="0.33"
-                            app:avatarViewInitialsTextStyle="bold" />
+                <io.getstream.avatarview.AvatarView
+                    android:id="@+id/profile_avatar"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    app:avatarViewInitialsTextColor="@color/white"
+                    app:avatarViewInitialsTextSize="21sp"
+                    app:avatarViewInitialsTextSizeRatio="0.33"
+                    app:avatarViewInitialsTextStyle="bold" />
 
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="110dp"-->
-<!--                    android:layout_height="110dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    app:cardCornerRadius="90dp">-->
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:layout_width="110dp"-->
+                <!--                    android:layout_height="110dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    app:cardCornerRadius="90dp">-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:importantForAccessibility="no"-->
-<!--                        android:scaleType="centerCrop"-->
-<!--                        android:src="@drawable/iv_mobile" />-->
-<!--                </androidx.cardview.widget.CardView>-->
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:importantForAccessibility="no"-->
+                <!--                        android:scaleType="centerCrop"-->
+                <!--                        android:src="@drawable/iv_mobile" />-->
+                <!--                </androidx.cardview.widget.CardView>-->
 
 
                 <TextView
                     android:id="@+id/tv_profile_username"
+                    style="@style/GreyTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -118,11 +119,11 @@
                         android:src="@drawable/ic_language" />
 
                     <TextView
+                        style="@style/GreyTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        style="@style/GreyTextView"
                         android:text="Language"
                         android:textSize="20sp" />
 
@@ -160,11 +161,11 @@
                         android:src="@drawable/ic_add" />
 
                     <TextView
+                        style="@style/GreyTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        style="@style/GreyTextView"
                         android:text="Add Project"
                         android:textSize="20sp" />
 
@@ -195,11 +196,12 @@
                         android:src="@drawable/ic_about" />
 
                     <TextView
+                        style="@style/GreyTextView"
+                        id="@+id/profile_about_us"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        style="@style/GreyTextView"
                         android:text="About Us"
                         android:textSize="20sp" />
 
@@ -211,40 +213,6 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp" />
-
-                <LinearLayout
-                    android:id="@+id/profile_support"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_support" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="1"
-                        style="@style/GreyTextView"
-                        android:text="Support"
-                        android:textSize="20sp" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_right" />
-
-
-                </LinearLayout>
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -265,11 +233,11 @@
                         android:src="@drawable/ic_logout" />
 
                     <TextView
+                        style="@style/GreyTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        style="@style/GreyTextView"
                         android:text="Log Out"
                         android:textSize="20sp" />
 
@@ -286,32 +254,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp" />
 
-                <LinearLayout
-                    android:id="@+id/profile_delete_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_delete" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="1"
-                        android:text="Delete Account"
-                        android:textSize="20sp" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
 
 
             </LinearLayout>

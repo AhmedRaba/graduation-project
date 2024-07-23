@@ -7,11 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
-import androidx.core.graphics.drawable.toDrawable
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.training.codespire.AuthActivity
+import com.training.codespire.R
 import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.data.viewmodel.AuthViewmodel
 import com.training.codespire.databinding.FragmentProfileBinding
@@ -50,18 +53,22 @@ class ProfileFragment : Fragment() {
         }
 
 
+        logout()
+        showAboutUs()
+        setUsername()
+
+        return binding.root
+    }
+
+
+    private fun logout() {
         binding.profileLogOut.setOnClickListener {
             Log.d("ProfileFragment", "Logging out...")
             showLoading()
             authViewModel.logoutUser()
         }
-
-
-
-        setUsername()
-
-        return binding.root
     }
+
 
     private fun navigateToLogin() {
         val intent = Intent(requireContext(), AuthActivity::class.java)
@@ -87,7 +94,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getRandomColor(): Int {
-        val random =Random
+        val random = Random
         return Color.argb(
             255, // alpha
             random.nextInt(256), // red
@@ -95,5 +102,20 @@ class ProfileFragment : Fragment() {
             random.nextInt(256) // blue
         )
     }
+
+
+    private fun showAboutUs() {
+
+        binding.proileAboutUs.setOnClickListener {
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_about_us, null)
+            val dialogBuilder = AlertDialog.Builder(requireContext()).setView(dialogView).create()
+            dialogView.findViewById<Button>(R.id.btn_about_us_close).setOnClickListener {
+                dialogBuilder.dismiss()
+            }
+            dialogBuilder.show()
+        }
+
+    }
+
 
 }

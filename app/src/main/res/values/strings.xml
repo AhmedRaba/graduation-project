@@ -7,11 +7,27 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be >8 characters</string>
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="underline_text"><u>English</u>
+    <string name="underline_text"><u>English</u></string>
+
+
+
+
+    <string name="about_us">
+        Welcome to DevStore, your one-stop shop for top-quality coding projects across various categories! Whether you\'re looking to enhance your skills or need ready-made solutions for your development needs, we have something for everyone.
+        \n\nAt DevStore, we specialize in offering a diverse range of coding projects, including:
+        \n\n• Mobile Apps: Find innovative and user-friendly mobile applications for both Android and iOS platforms.
+        \n• Desktop Apps: Discover powerful and efficient desktop applications for various operating systems.
+        \n• Front-end Development: Explore beautifully designed and responsive front-end projects that ensure an excellent user experience.
+        \n• Back-end Development: Get robust and scalable back-end solutions that power your applications with efficiency.
+        \n• Artificial Intelligence: Dive into the future with AI projects that showcase the cutting edge of technology and machine learning.
+        \n\nOur mission is to provide developers with high-quality, ready-to-use projects that can accelerate their learning and development process. Whether you\'re a beginner looking for educational resources or an experienced developer in need of sophisticated project templates, DevStore has you covered.
+        \n\nJoin our community today and take your coding journey to the next level with DevStore!
     </string>
+
+
 </resources>
