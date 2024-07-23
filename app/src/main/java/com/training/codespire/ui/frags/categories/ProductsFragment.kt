@@ -24,49 +24,45 @@ class ProductsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductsBinding.inflate(layoutInflater)
+        binding = FragmentProductsBinding.inflate(inflater)
         sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
         authViewModel = ViewModelProvider(this)[AuthViewmodel::class.java]
 
-        val categoryId=sharedPreferencesUtil.categoryId
+        val categoryId = sharedPreferencesUtil.categoryId
         setCategoryName(categoryId)
         productAdapter = ProductAdapter(emptyList())
-
-        authViewModel.getProductsByCategory()
+        binding.recyclerView.adapter = productAdapter
 
         showLoading()
-        lifecycleScope.launch {
-            authViewModel.productsByCategoryResponseLiveData.observe(
-                viewLifecycleOwner,
-                Observer { products ->
-                    productAdapter = ProductAdapter(products)
-                    binding.recyclerView.adapter = productAdapter
-                })
-            delay(2000)
-            hideLoading()
-        }
 
-
-
-
+        authViewModel.getProductsByCategory()
+        authViewModel.productsByCategoryResponseLiveData.observe(viewLifecycleOwner, Observer { products ->
+            lifecycleScope.launch {
+                // Simulate a delay for loading images
+                delay(2000)
+                productAdapter = ProductAdapter(products)
+                binding.recyclerView.adapter = productAdapter
+                hideLoading()
+            }
+        })
 
         return binding.root
     }
 
-    private fun setCategoryName(categoryId: Int){
+    private fun setCategoryName(categoryId: Int) {
         when (categoryId) {
-            1-> binding.tvProductCategory.text = "Front End"
-            2-> binding.tvProductCategory.text = "Back End"
-            3-> binding.tvProductCategory.text = "AI"
-            4-> binding.tvProductCategory.text = "Mobile"
-            5-> binding.tvProductCategory.text = "Website"
-            6-> binding.tvProductCategory.text = "Desktop"
-            13-> binding.tvProductCategory.text = "Free"
+            1 -> binding.tvProductCategory.text = "Front End"
+            2 -> binding.tvProductCategory.text = "Back End"
+            3 -> binding.tvProductCategory.text = "AI"
+            4 -> binding.tvProductCategory.text = "Mobile"
+            5 -> binding.tvProductCategory.text = "Website"
+            6 -> binding.tvProductCategory.text = "Desktop"
+            13 -> binding.tvProductCategory.text = "Free"
         }
     }
 
     private fun showLoading() {
-        binding.recyclerView.visibility = View.GONE
+        binding.recyclerView.visibility = View.INVISIBLE
         binding.progressBarProducts.visibility = View.VISIBLE
     }
 
@@ -74,5 +70,4 @@ class ProductsFragment : Fragment() {
         binding.recyclerView.visibility = View.VISIBLE
         binding.progressBarProducts.visibility = View.GONE
     }
-
 }

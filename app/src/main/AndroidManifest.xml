@@ -21,7 +21,7 @@
         <activity
             android:name=".AuthActivity"
             android:exported="true"
-            android:theme="@style/Theme.CustomSplashScreenTheme">
+            android:theme="@style/CustomSplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

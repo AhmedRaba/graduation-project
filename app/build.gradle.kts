@@ -57,6 +57,9 @@ dependencies {
     //  Avatar
     implementation (libs.avatarview.coil.v107)
 
+    // lottie
+    implementation (libs.android.lottie)
+
     //  Glide
     implementation (libs.glide)
 
