@@ -11,6 +11,7 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.product_details.ProductDetailsResponse
 import com.training.codespire.network.products.ProductData
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -24,6 +25,7 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
     val logoutResponseLiveData = MutableLiveData<Boolean>()
     val productsByCategoryResponseLiveData = MutableLiveData<List<ProductData>>()
     val searchResultsLiveAllProductsData = MutableLiveData<List<AllProductsData>>()
+    val productDetailsLiveData = MutableLiveData<ProductDetailsResponse>()
     val errorLiveData = MutableLiveData<String>()
 
 
@@ -127,9 +129,25 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 errorLiveData.postValue("Network error: ${e.message}")
             }
-
         }
-
-
     }
+
+    fun getProductDetails(productId:Int){
+        viewModelScope.launch {
+            try {
+                val response=repository.getProductDetails(productId)
+                if (response.isSuccessful){
+                    response.body()?.let {
+                    productDetailsLiveData.postValue(it)
+                    }
+                }else{
+                    val errorMessage=response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            }catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
 }

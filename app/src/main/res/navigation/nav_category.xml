@@ -3,11 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_category"
-    app:startDestination="@id/mobileFragment">
+    app:startDestination="@id/productsFragment">
 
     <fragment
-        android:id="@+id/mobileFragment"
+        android:id="@+id/productsFragment"
         android:name="com.training.codespire.ui.frags.categories.ProductsFragment"
         android:label="fragment_mobile"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.training.codespire.ui.frags.product_details.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_productDetailsFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>

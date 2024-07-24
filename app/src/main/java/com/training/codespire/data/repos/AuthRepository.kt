@@ -1,6 +1,7 @@
 package com.training.codespire.data.repos
 
 import android.content.Context
+import android.util.Log
 import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.network.ApiService
 import com.training.codespire.network.auth.LoginRequest
@@ -9,6 +10,7 @@ import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
 import com.training.codespire.network.RetrofitClient
 import com.training.codespire.network.all_products.AllProductsResponse
+import com.training.codespire.network.product_details.ProductDetailsResponse
 import com.training.codespire.network.products.CategoryResponse
 import retrofit2.Response
 
@@ -58,6 +60,10 @@ class AuthRepository(private val context: Context) {
     }
 
 
+    suspend fun getProductDetails(id:Int):Response<ProductDetailsResponse>{
+        val token=sharedPreferencesUtil.token
+        return api.getProductDetails("Bearer $token",id)
+    }
 
 
 }

@@ -5,6 +5,7 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.product_details.ProductDetailsResponse
 import com.training.codespire.network.products.CategoryResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -34,6 +35,10 @@ interface ApiService {
     @GET("products")
     suspend fun getAllProducts(@Header("Authorization") token: String):Response<AllProductsResponse>
 
+    @GET("products/{id}")
+    suspend fun getProductDetails(
+        @Header("Authorization") token:String,
+        @Path("id") id: Int):Response<ProductDetailsResponse>
 
 
 

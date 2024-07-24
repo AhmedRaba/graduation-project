@@ -13,11 +13,24 @@ import com.training.codespire.R
 import com.training.codespire.databinding.ItemProductBinding
 import com.training.codespire.network.products.ProductData
 
-class ProductAdapter(private val products: List<ProductData>) :
+class ProductAdapter(
+    private val products: List<ProductData>,
+    private val onItemClick: (Int) -> Unit
+) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(val binding: ItemProductBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root){
+            init {
+                binding.root.setOnClickListener {
+                    val position=adapterPosition
+                    if (position!=RecyclerView.NO_POSITION){
+                        val productId=products[position].id
+                        onItemClick(productId)
+                    }
+                }
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -43,7 +56,7 @@ class ProductAdapter(private val products: List<ProductData>) :
             loadingAnimation.playAnimation()
 
             // Set a placeholder image for ImageView while the real image is loading
-            ivProduct.setImageResource(R.drawable.iv_dev_store_logo) // Use a placeholder drawable
+            ivProduct.setImageResource(R.drawable.white_background) // Use a placeholder drawable
 
             imageUrl?.let {
                 Glide.with(root.context)
@@ -51,7 +64,10 @@ class ProductAdapter(private val products: List<ProductData>) :
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.iv_dev_store_logo) // Use a placeholder drawable
                     .into(object : CustomTarget<android.graphics.drawable.Drawable>() {
-                        override fun onResourceReady(resource: android.graphics.drawable.Drawable, transition: Transition<in android.graphics.drawable.Drawable>?) {
+                        override fun onResourceReady(
+                            resource: android.graphics.drawable.Drawable,
+                            transition: Transition<in android.graphics.drawable.Drawable>?
+                        ) {
                             // Hide the Lottie animation and set the image
                             loadingAnimation.visibility = View.GONE
                             loadingAnimation.cancelAnimation()

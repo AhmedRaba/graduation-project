@@ -64,4 +64,12 @@
         <item name="fontFamily">@font/roboto</item>
     </style>
 
+
+    <style name="RatingBar">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">#E6BC24</item>
+    </style>
+
+
+
 </resources>

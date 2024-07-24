@@ -36,6 +36,8 @@ class SearchResultAdapter(private val allProducts: List<AllProductsData>) : Recy
             loadingAnimation.visibility = View.VISIBLE
             loadingAnimation.playAnimation()
 
+            ivProduct.setImageResource(R.drawable.white_background)
+
             imageUrl?.let {
                 Glide.with(root.context)
                     .load(it)

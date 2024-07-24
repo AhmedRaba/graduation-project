@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.training.codespire.data.ProductAdapter
 import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.data.viewmodel.AuthViewmodel
@@ -24,29 +25,41 @@ class ProductsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductsBinding.inflate(inflater)
+        binding = FragmentProductsBinding.inflate(inflater, container, false)
         sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
         authViewModel = ViewModelProvider(this)[AuthViewmodel::class.java]
 
         val categoryId = sharedPreferencesUtil.categoryId
         setCategoryName(categoryId)
-        productAdapter = ProductAdapter(emptyList())
+        productAdapter = ProductAdapter(emptyList()) { productId ->
+            navigateToProductDetails(productId)
+        }
         binding.recyclerView.adapter = productAdapter
 
         showLoading()
 
         authViewModel.getProductsByCategory()
-        authViewModel.productsByCategoryResponseLiveData.observe(viewLifecycleOwner, Observer { products ->
+        authViewModel.productsByCategoryResponseLiveData.observe(viewLifecycleOwner
+        ) { products ->
             lifecycleScope.launch {
                 // Simulate a delay for loading images
                 delay(2000)
-                productAdapter = ProductAdapter(products)
+                productAdapter = ProductAdapter(products) { productId ->
+                    navigateToProductDetails(productId)
+                }
                 binding.recyclerView.adapter = productAdapter
                 hideLoading()
             }
-        })
+        }
 
         return binding.root
+    }
+
+    private fun navigateToProductDetails(productId: Int) {
+        val action =
+            ProductsFragmentDirections.actionProductsFragmentToProductDetailsFragment(productId)
+        findNavController().navigate(action)
+
     }
 
     private fun setCategoryName(categoryId: Int) {
