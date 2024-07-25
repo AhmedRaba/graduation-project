@@ -20,17 +20,17 @@ class ProductAdapter(
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(val binding: ItemProductBinding) :
-        RecyclerView.ViewHolder(binding.root){
-            init {
-                binding.root.setOnClickListener {
-                    val position=adapterPosition
-                    if (position!=RecyclerView.NO_POSITION){
-                        val productId=products[position].id
-                        onItemClick(productId)
-                    }
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val productId = products[position].id
+                    onItemClick(productId)
                 }
             }
         }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -51,31 +51,31 @@ class ProductAdapter(
             tvProductPrice.text = "$" + product.price
             tvProductName.text = product.name
 
-            // Show Lottie animation
+            // Always ensure Lottie animation is visible before loading image
             loadingAnimation.visibility = View.VISIBLE
             loadingAnimation.playAnimation()
 
-            // Set a placeholder image for ImageView while the real image is loading
-            ivProduct.setImageResource(R.drawable.white_background) // Use a placeholder drawable
+            // Use placeholder for ImageView while loading the actual image
+            ivProduct.setImageResource(R.drawable.white_background) // Placeholder drawable
 
             imageUrl?.let {
                 Glide.with(root.context)
                     .load(it)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.iv_dev_store_logo) // Use a placeholder drawable
+                    .placeholder(R.drawable.iv_dev_store_logo)
                     .into(object : CustomTarget<android.graphics.drawable.Drawable>() {
                         override fun onResourceReady(
                             resource: android.graphics.drawable.Drawable,
                             transition: Transition<in android.graphics.drawable.Drawable>?
                         ) {
-                            // Hide the Lottie animation and set the image
+
                             loadingAnimation.visibility = View.GONE
                             loadingAnimation.cancelAnimation()
                             ivProduct.setImageDrawable(resource)
                         }
 
                         override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
-                            // Handle cleanup if necessary
+
                         }
                     })
             } ?: run {

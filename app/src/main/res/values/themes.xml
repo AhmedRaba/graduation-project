@@ -7,6 +7,10 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+
+
+        <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
+
     </style>
 
     <style name="Theme.Codespire" parent="Base.Theme.Codespire" />
@@ -70,6 +74,14 @@
         <item name="colorControlActivated">#E6BC24</item>
     </style>
 
+    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
+    </style>
+
+    <style name="ThemeOverlay.App.RadioButton" parent="">
+        <item name="colorOnSurface">@color/orange</item>
+        <item name="colorSecondary">@color/orange</item>
+    </style>
 
 
 </resources>

@@ -53,6 +53,9 @@
         <item name="fontFamily">@font/roboto</item>
     </style>
 
+    <style name="OrangeRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/orange</item> <!-- Change to your orange color -->
+    </style>
 
 
 </resources>

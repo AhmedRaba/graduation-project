@@ -11,7 +11,7 @@ import com.training.codespire.R
 import com.training.codespire.databinding.ItemProductBinding
 import com.training.codespire.network.all_products.AllProductsData
 
-class SearchResultAdapter(private val allProducts: List<AllProductsData>) : RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
+class SearchResultAdapter(private var allProducts: List<AllProductsData>) : RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
 
     inner class SearchResultViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -61,5 +61,10 @@ class SearchResultAdapter(private val allProducts: List<AllProductsData>) : Recy
                 loadingAnimation.cancelAnimation()
             }
         }
+    }
+
+    fun updateProducts(newProducts: List<AllProductsData>) {
+        allProducts = newProducts
+        notifyDataSetChanged()
     }
 }
