@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PaymentFragment">
 
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/ic_back_arrow"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_back_arrow" />
+
+    </Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/DarkBlueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We Accept"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/iv_visa" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/iv_master_card" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/iv_american_express" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,32 +67,43 @@
 
         <EditText
             android:id="@+id/etCardNumber"
+            style="@style/CustomEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="Card Number"
             android:importantForAutofill="no"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_expiry_date"
+            style="@style/CustomEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="Expiry Date (MM/YY)"
             android:importantForAutofill="no"
-            android:inputType="date" />
+            android:inputType="date"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etCvv"
+            style="@style/CustomEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="CVV"
             android:importantForAutofill="no"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnPayNow"
+            style="@style/CustomButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="Pay Now" />
 
         <TextView
@@ -52,4 +116,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

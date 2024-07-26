@@ -10,11 +10,6 @@
         android:icon="@drawable/ic_outline_search"
         android:title="Search" />
     <item
-        android:id="@+id/wishlistFragment"
-        android:icon="@drawable/ic_fav_selector"
-
-        android:title="Wishlist" />
-    <item
         android:id="@+id/myProjectsFragment"
         android:icon="@drawable/ic_saved_selector"
 
