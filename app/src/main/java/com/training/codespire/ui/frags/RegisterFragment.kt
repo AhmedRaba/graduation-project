@@ -52,7 +52,6 @@ class RegisterFragment : Fragment() {
         authViewModel.loginResponseLiveData.observe(viewLifecycleOwner) { loginResponse ->
             showLoading()
             loginResponse?.let {
-
                 sharedPreferencesUtil.isLoggedIn = true
                 sharedPreferencesUtil.token = loginResponse.token
                 Log.e("authViewModel", sharedPreferencesUtil.token.toString())
@@ -64,7 +63,8 @@ class RegisterFragment : Fragment() {
         authViewModel.errorLiveData.observe(viewLifecycleOwner) { error ->
             error?.let {
                 hideLoading()
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                handleErrors(error)
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -75,7 +75,6 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigateToHome() {
-
         val intent = Intent(requireContext(), MainActivity::class.java)
         requireActivity().startActivity(intent)
         requireActivity().finish()
@@ -140,6 +139,9 @@ class RegisterFragment : Fragment() {
         if (trimmedPassword.isEmpty()) {
             setFieldError(binding.etRegPassword, binding.tvRegPasswordError, "Password is required")
             isValid = false
+        } else if (trimmedPassword.length < 8) {
+            setFieldError(binding.etRegPassword, binding.tvRegPasswordError, "Password must be at least 8 characters")
+            isValid = false
         } else {
             setFieldNormal(binding.etRegPassword, binding.tvRegPasswordError)
         }
@@ -177,10 +179,9 @@ class RegisterFragment : Fragment() {
         errorTextView.visibility = View.GONE
         field.setBackgroundResource(R.drawable.et_border_selector)
     }
+    private fun setupPasswordVisibilityToggle(passwordField: EditText, visibleIcon: Int, hiddenIcon: Int) {
+        var isPasswordVisible = false
 
-    private fun setupPasswordVisibilityToggle(
-        passwordField: EditText, visibleIcon: Int, hiddenIcon: Int
-    ) {
         passwordField.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val drawableEnd = 2 // index for drawableRight
@@ -188,32 +189,42 @@ class RegisterFragment : Fragment() {
 
                 if (drawable != null && event.rawX >= (passwordField.right - drawable.bounds.width())) {
                     val selection = passwordField.selectionEnd
-                    if (passwordField.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                        passwordField.inputType =
-                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    if (isPasswordVisible) {
+                        passwordField.transformationMethod = android.text.method.PasswordTransformationMethod.getInstance()
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, hiddenIcon, 0)
                     } else {
-                        passwordField.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                        passwordField.transformationMethod = null
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, visibleIcon, 0)
                     }
+                    isPasswordVisible = !isPasswordVisible
                     passwordField.setSelection(selection)
-                    true
-                } else {
-                    false
+                    return@setOnTouchListener true
                 }
-            } else {
-                false
             }
+            false
         }
     }
+
+
 
     private fun showLoading() {
         binding.registerFragment.visibility = View.GONE
         binding.progressBarRegister.visibility = View.VISIBLE
     }
+
     private fun hideLoading() {
         binding.registerFragment.visibility = View.VISIBLE
         binding.progressBarRegister.visibility = View.GONE
     }
 
+    private fun handleErrors(error: String) {
+        if (error.contains("email", true)) {
+            setFieldError(binding.etRegEmail, binding.tvRegEmailError, "Invalid email address")
+        }
+        if (error.contains("password", true)) {
+            setFieldError(binding.etRegPassword, binding.tvRegPasswordError, "Password must be at least 8 characters")
+        }
+    }
 }
+
+

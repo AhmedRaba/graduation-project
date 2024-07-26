@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
             showLoading()
             loginResponse?.let {
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                sharedPreferencesUtil.isLoggedIn=true
+                sharedPreferencesUtil.isLoggedIn = true
                 navigateToMainActivity()
             }
         }
@@ -45,14 +45,11 @@ class LoginFragment : Fragment() {
         authViewmodel.errorLiveData.observe(viewLifecycleOwner) { error ->
             error?.let {
                 hideLoading()
-                showError(error)
+                showError()
             }
         }
 
-
-
         navToRegister()
-
         checkLogin()
 
         return binding.root
@@ -68,8 +65,6 @@ class LoginFragment : Fragment() {
         binding.btnSignIn.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-
-
 
             if (validateInput(email, password)) {
                 authViewmodel.loginUser(email, password)
@@ -126,6 +121,8 @@ class LoginFragment : Fragment() {
         visibleIcon: Int,
         hiddenIcon: Int
     ) {
+        var isPasswordVisible = false
+
         passwordField.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val drawableEnd = 2 // index for drawableRight
@@ -133,38 +130,36 @@ class LoginFragment : Fragment() {
 
                 if (drawable != null && event.rawX >= (passwordField.right - drawable.bounds.width())) {
                     val selection = passwordField.selectionEnd
-                    if (passwordField.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                        passwordField.inputType =
-                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    if (isPasswordVisible) {
+                        passwordField.transformationMethod = android.text.method.PasswordTransformationMethod.getInstance()
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, hiddenIcon, 0)
                     } else {
-                        passwordField.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                        passwordField.transformationMethod = null
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, visibleIcon, 0)
                     }
+                    isPasswordVisible = !isPasswordVisible
                     passwordField.setSelection(selection)
-                    true
-                } else {
-                    false
+                    return@setOnTouchListener true
                 }
-            } else {
-                false
             }
+            false
         }
     }
 
-    private fun showError(error: String) {
 
-        binding.tvEmailError.visibility = View.VISIBLE
-        binding.tvEmailError.text = "Invalid email or password"
-
+    private fun showError() {
+        setFieldError(binding.etEmail, binding.tvEmailError, "Invalid email or password")
     }
 
     private fun showLoading() {
         binding.loginFragment.visibility = View.GONE
         binding.progressBarLogin.visibility = View.VISIBLE
     }
+
     private fun hideLoading() {
         binding.loginFragment.visibility = View.VISIBLE
         binding.progressBarLogin.visibility = View.GONE
     }
 }
+
+
