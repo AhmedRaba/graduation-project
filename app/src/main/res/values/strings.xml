@@ -28,10 +28,8 @@
     </string>
 
 
-
-
-        <string-array name="filter_options">
-            <item>Name</item>
-            <item>Price</item>
-        </string-array>
+    <string-array name="filter_options">
+        <item>Name</item>
+        <item>Price</item>
+    </string-array>
 </resources>

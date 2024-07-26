@@ -11,6 +11,8 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.payment.PaymentRequest
+import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
 import com.training.codespire.network.products.ProductData
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
     val productsByCategoryResponseLiveData = MutableLiveData<List<ProductData>>()
     val searchResultsLiveAllProductsData = MutableLiveData<List<AllProductsData>>()
     val productDetailsLiveData = MutableLiveData<ProductDetailsResponse>()
+    val paymentResponseLiveData = MutableLiveData<PaymentResponse>()
     val errorLiveData = MutableLiveData<String>()
 
 
@@ -132,19 +135,37 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getProductDetails(productId:Int){
+    fun getProductDetails(productId: Int) {
         viewModelScope.launch {
             try {
-                val response=repository.getProductDetails(productId)
-                if (response.isSuccessful){
+                val response = repository.getProductDetails(productId)
+                if (response.isSuccessful) {
                     response.body()?.let {
-                    productDetailsLiveData.postValue(it)
+                        productDetailsLiveData.postValue(it)
                     }
-                }else{
-                    val errorMessage=response.errorBody()?.string() ?: "Unknown Error"
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
                     errorLiveData.postValue(errorMessage)
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
+    fun makePayment(productId: Int, cardNumber: String, expiryDate: String, cvv: String) {
+        viewModelScope.launch {
+            try {
+                val paymentRequest = PaymentRequest(cardNumber, expiryDate, cvv)
+                val response: Response<PaymentResponse> =
+                    repository.makePayment(productId, paymentRequest)
+                if (response.isSuccessful) {
+                    paymentResponseLiveData.postValue(response.body())
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
                 errorLiveData.postValue("Network error: ${e.message}")
             }
         }

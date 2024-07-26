@@ -27,29 +27,28 @@ class ProductDetailsFragment : Fragment() {
     private lateinit var authViewModel: AuthViewmodel
     private lateinit var sharedPreferencesUtil: SharedPreferencesUtil
     private val args: ProductDetailsFragmentArgs by navArgs()
+    private var productName: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         authViewModel = ViewModelProvider(this)[AuthViewmodel::class.java]
-        sharedPreferencesUtil=SharedPreferencesUtil(requireContext())
-
+        sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
 
         val productId = args.productId
         authViewModel.getProductDetails(productId)
-
 
 
         binding.icBackArrow.setOnClickListener {
             findNavController().navigateUp()
         }
 
-
         authViewModel.productDetailsLiveData.observe(viewLifecycleOwner) { product ->
             product?.let {
                 binding.tvDetailsProductName.text = it.name
                 binding.tvDetailsProductDesc.text = it.description
+                binding.tvDetailsProductUploader.text="(${it.uploadedBy})"
                 Glide.with(this).load(it.images[0].url).into(binding.ivDetailsProductImage)
 
                 binding.tvNumReviews.text = "(${it.reviewsCount})"
@@ -57,31 +56,59 @@ class ProductDetailsFragment : Fragment() {
                 binding.reviewsRecyclerView.adapter = reviewAdapter
 
 
-                customizeBuyButton(it.downloadUrl,it.name)
-
-
+                setupPayment(it.downloadUrl,it.name,it.canBuy)
 
                 binding.tvTotalPrice.text = "Total Price: $" + it.price
             }
         }
 
-
-
         return binding.root
     }
 
+    private fun setupPayment(url: String, fileName: String, canBuy: Boolean) {
 
-    private fun customizeBuyButton(url: String,fileName: String) {
-        if (sharedPreferencesUtil.categoryId == 13) {
+        if (!canBuy) {
             binding.btnBuyNow.text = "Download"
             binding.btnBuyNow.setOnClickListener {
-                downloadFile(url,fileName)
+                if (url != null) {
+                    downloadFile(url, fileName)
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        "Download URL not available",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
+        } else {
+            binding.btnBuyNow.setOnClickListener {
+                val action =
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToPaymentFragment(
+                        args.productId
+                    )
+                findNavController().navigate(action)
+            }
+        }
+
+
+    }
+
+    private fun downloadFreeProduct(url: String, fileName: String) {
+
+
+        binding.btnBuyNow.text = "Download"
+        binding.btnBuyNow.setOnClickListener {
+            downloadFile(url, fileName)
         }
     }
 
-    private fun downloadFile(url:String,fileName:String){
-        val request=DownloadManager.Request(Uri.parse(url))
+
+    private fun buyProduct() {
+
+    }
+
+    private fun downloadFile(url: String, fileName: String) {
+        val request = DownloadManager.Request(Uri.parse(url))
             .setTitle(fileName)
             .setDescription("Downloading file...")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
@@ -89,12 +116,11 @@ class ProductDetailsFragment : Fragment() {
             .setAllowedOverMetered(true)
             .setAllowedOverRoaming(true)
 
-        val downloadManager=requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val downloadManager =
+            requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)
 
-        Snackbar.make(binding.root, "File downloaded successfully", Snackbar.LENGTH_SHORT).show()
-
+        Snackbar.make(binding.root, "File downloaded successfully", Snackbar.LENGTH_SHORT)
+            .show()
     }
-
-
 }

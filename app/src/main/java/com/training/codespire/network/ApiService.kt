@@ -5,6 +5,8 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.payment.PaymentRequest
+import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
 import com.training.codespire.network.products.CategoryResponse
 import retrofit2.Response
@@ -40,6 +42,11 @@ interface ApiService {
         @Header("Authorization") token:String,
         @Path("id") id: Int):Response<ProductDetailsResponse>
 
-
+    @POST("payment/{id}")
+    suspend fun makePayment(
+        @Path("id") productId:Int,
+        @Body paymentRequest: PaymentRequest,
+        @Header("Authorization") token: String
+    ):Response<PaymentResponse>
 
 }

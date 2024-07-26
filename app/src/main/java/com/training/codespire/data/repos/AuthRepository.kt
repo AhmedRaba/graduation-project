@@ -1,15 +1,16 @@
 package com.training.codespire.data.repos
 
 import android.content.Context
-import android.util.Log
 import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.network.ApiService
+import com.training.codespire.network.RetrofitClient
+import com.training.codespire.network.all_products.AllProductsResponse
 import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
-import com.training.codespire.network.RetrofitClient
-import com.training.codespire.network.all_products.AllProductsResponse
+import com.training.codespire.network.payment.PaymentRequest
+import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
 import com.training.codespire.network.products.CategoryResponse
 import retrofit2.Response
@@ -46,23 +47,31 @@ class AuthRepository(private val context: Context) {
         return response
     }
 
-    suspend fun getProductsByCategory():Response<CategoryResponse>{
-        val token=sharedPreferencesUtil.token
-        val categoryId=sharedPreferencesUtil.categoryId
-        return api.getProductsByCategory("Bearer $token",categoryId)
+    suspend fun getProductsByCategory(): Response<CategoryResponse> {
+        val token = sharedPreferencesUtil.token
+        val categoryId = sharedPreferencesUtil.categoryId
+        return api.getProductsByCategory("Bearer $token", categoryId)
 
     }
 
 
     suspend fun getAllProducts(): Response<AllProductsResponse> {
-        val token=sharedPreferencesUtil.token
+        val token = sharedPreferencesUtil.token
         return api.getAllProducts("Bearer $token")
     }
 
 
-    suspend fun getProductDetails(id:Int):Response<ProductDetailsResponse>{
-        val token=sharedPreferencesUtil.token
-        return api.getProductDetails("Bearer $token",id)
+    suspend fun getProductDetails(id: Int): Response<ProductDetailsResponse> {
+        val token = sharedPreferencesUtil.token
+        return api.getProductDetails("Bearer $token", id)
+    }
+
+
+    suspend fun makePayment(
+        productId: Int, paymentRequest: PaymentRequest
+    ): Response<PaymentResponse> {
+        val token = sharedPreferencesUtil.token
+        return api.makePayment(productId, paymentRequest,"Bearer $token")
     }
 
 
