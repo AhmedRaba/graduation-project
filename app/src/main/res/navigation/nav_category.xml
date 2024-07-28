@@ -26,6 +26,9 @@
             android:id="@+id/action_productDetailsFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
         <action
+            android:id="@+id/actionProductDetailsFragmentSelf"
+            app:destination="@id/productDetailsFragment" />
+        <action
             android:id="@+id/action_productDetailsFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
 

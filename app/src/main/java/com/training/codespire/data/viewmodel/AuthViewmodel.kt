@@ -14,6 +14,8 @@ import com.training.codespire.network.auth.RegisterResponse
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
+import com.training.codespire.network.product_details.review.ReviewRequest
+import com.training.codespire.network.product_details.review.ReviewResponse
 import com.training.codespire.network.products.ProductData
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -28,6 +30,7 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
     val productsByCategoryResponseLiveData = MutableLiveData<List<ProductData>>()
     val searchResultsLiveAllProductsData = MutableLiveData<List<AllProductsData>>()
     val productDetailsLiveData = MutableLiveData<ProductDetailsResponse>()
+    val reviewLiveData = MutableLiveData<ReviewResponse>()
     val paymentResponseLiveData = MutableLiveData<PaymentResponse>()
     val errorLiveData = MutableLiveData<String>()
 
@@ -120,8 +123,7 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
                     val allProductsResponse = response.body()?.data ?: emptyList()
                     val filteredProducts = allProductsResponse.filter { product ->
                         product.name.contains(
-                            query,
-                            ignoreCase = true
+                            query, ignoreCase = true
                         ) || product.description.contains(query, ignoreCase = true)
                     }
                     searchResultsLiveAllProductsData.postValue(filteredProducts)
@@ -152,6 +154,27 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+
+    fun submitReview(productId: Int, rating: Int, comment: String) {
+        viewModelScope.launch {
+            try {
+                val reviewRequest = ReviewRequest(comment, rating)
+                val response = repository.submitReview(productId, reviewRequest)
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        reviewLiveData.postValue(response.body())
+                    }
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
 
     fun makePayment(productId: Int, cardNumber: String, expiryDate: String, cvv: String) {
         viewModelScope.launch {

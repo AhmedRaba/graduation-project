@@ -12,6 +12,8 @@ import com.training.codespire.network.auth.RegisterResponse
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
+import com.training.codespire.network.product_details.review.ReviewRequest
+import com.training.codespire.network.product_details.review.ReviewResponse
 import com.training.codespire.network.products.CategoryResponse
 import retrofit2.Response
 
@@ -64,6 +66,11 @@ class AuthRepository(private val context: Context) {
     suspend fun getProductDetails(id: Int): Response<ProductDetailsResponse> {
         val token = sharedPreferencesUtil.token
         return api.getProductDetails("Bearer $token", id)
+    }
+
+    suspend fun submitReview(productId: Int,reviewRequest: ReviewRequest):Response<ReviewResponse>{
+        val token=sharedPreferencesUtil.token
+        return api.submitReview(productId,"Bearer $token",reviewRequest)
     }
 
 

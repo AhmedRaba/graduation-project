@@ -32,8 +32,6 @@ class ReviewProductAdapter(private val reviews: List<Review>):RecyclerView.Adapt
             ratingBarReview.rating=review.rating.toFloat()
 
         }
-
-
     }
 
 
