@@ -9,21 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.training.codespire.ui.frags.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" >
-
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.training.codespire.ui.frags.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
-
-    <fragment
-        android:id="@+id/wishlistFragment"
-        android:name="com.training.codespire.ui.frags.WishlistFragment"
-        android:label="Wishlist"
-        tools:layout="@layout/fragment_wishlist" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/myProjectsFragment"
@@ -37,5 +36,32 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.training.codespire.ui.frags.product_details.ProductDetailsFragment"
+        android:label="Product Details"
+        tools:layout="@layout/fragment_product_details">
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.training.codespire.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

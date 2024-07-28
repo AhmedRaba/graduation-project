@@ -10,10 +10,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.training.codespire.R
 import com.training.codespire.data.SearchResultAdapter
 import com.training.codespire.data.viewmodel.AuthViewmodel
 import com.training.codespire.databinding.FragmentSearchBinding
+import com.training.codespire.ui.frags.categories.ProductsFragmentDirections
 
 class SearchFragment : Fragment() {
 
@@ -29,7 +31,9 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchBinding.inflate(layoutInflater)
         authViewModel = ViewModelProvider(this)[AuthViewmodel::class.java]
 
-        searchResultAdapter = SearchResultAdapter(listOf())
+        searchResultAdapter = SearchResultAdapter(listOf()) { productId ->
+            navigateToProductDetails(productId)
+        }
         binding.searchRecyclerView.adapter = searchResultAdapter
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -41,8 +45,6 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Optional: Filter products in real-time as user types
-                filterProducts(newText)
                 return true
             }
         })
@@ -106,6 +108,12 @@ class SearchFragment : Fragment() {
         Log.e("SearchFragment", "Filtered Products: $filteredList")
 
         searchResultAdapter.updateProducts(filteredList)
+    }
+
+    private fun navigateToProductDetails(productId: Int) {
+        val action =
+            SearchFragmentDirections.actionSearchFragmentToProductDetailsFragment(productId)
+        findNavController().navigate(action)
     }
 
 }
