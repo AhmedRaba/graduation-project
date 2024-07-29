@@ -5,6 +5,8 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.my_orders.MyOrdersResponse
+import com.training.codespire.network.my_orders.MyOrdersResponseItem
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
@@ -59,6 +61,11 @@ interface ApiService {
         @Body paymentRequest: PaymentRequest,
         @Header("Authorization") token: String
     ): Response<PaymentResponse>
+
+    @GET("orders")
+    suspend fun getOrders(
+        @Header("Authorization") token: String
+    ): Response<MyOrdersResponse>
 
 
 }

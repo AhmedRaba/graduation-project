@@ -28,7 +28,14 @@
         android:id="@+id/myProjectsFragment"
         android:name="com.training.codespire.ui.frags.MyProjectsFragment"
         android:label="My Projects"
-        tools:layout="@layout/fragment_my_projects" />
+        tools:layout="@layout/fragment_my_projects" >
+        <action
+            android:id="@+id/action_myProjectsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -54,6 +61,9 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_myProjectsFragment"
+            app:destination="@id/myProjectsFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"

@@ -11,6 +11,7 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.my_orders.MyOrdersResponse
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
@@ -32,6 +33,7 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
     val productDetailsLiveData = MutableLiveData<ProductDetailsResponse>()
     val reviewLiveData = MutableLiveData<ReviewResponse>()
     val paymentResponseLiveData = MutableLiveData<PaymentResponse>()
+    val ordersLiveData = MutableLiveData<MyOrdersResponse>()
     val errorLiveData = MutableLiveData<String>()
 
 
@@ -184,6 +186,23 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
                     repository.makePayment(productId, paymentRequest)
                 if (response.isSuccessful) {
                     paymentResponseLiveData.postValue(response.body())
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
+
+    fun fetchOrders() {
+        viewModelScope.launch {
+            try {
+                val response = repository.getOrders()
+                if (response.isSuccessful) {
+                    ordersLiveData.postValue(response.body())
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
                     errorLiveData.postValue(errorMessage)

@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -38,6 +37,9 @@ class ProductDetailsFragment : Fragment() {
         sharedPreferencesUtil = SharedPreferencesUtil(requireContext())
 
         val productId = args.productId
+
+        showLoading()
+
         authViewModel.getProductDetails(productId)
 
         setupObservers()
@@ -53,6 +55,7 @@ class ProductDetailsFragment : Fragment() {
 
     private fun setupObservers() {
         authViewModel.productDetailsLiveData.observe(viewLifecycleOwner) { product ->
+            hideLoading()
             product?.let {
                 binding.tvDetailsProductName.text = it.name
                 binding.tvDetailsProductDesc.text = it.description
@@ -60,17 +63,28 @@ class ProductDetailsFragment : Fragment() {
                 Glide.with(this).load(it.images[0].url).into(binding.ivDetailsProductImage)
 
                 binding.tvNumReviews.text = "(${it.reviewsCount})"
+
+
+                val reviewsAverage = if (it.reviews.isNotEmpty()) {
+                    it.reviews.map { review -> review.rating }.average()
+                } else {
+                    0.0
+                }
+                binding.tvDetailsReviewsAverage.text = "%.1f".format(reviewsAverage)
+
+
                 val reviewAdapter = ReviewProductAdapter(it.reviews)
                 binding.reviewsRecyclerView.adapter = reviewAdapter
 
                 setupPayment(it.downloadUrl, it.name, it.canBuy)
-                setupSubmitReviewButton(args.productId,it.canReview)
+                setupSubmitReviewButton(args.productId, it.canReview)
 
                 binding.tvTotalPrice.text = "Total Price: $" + it.price
             }
         }
 
         authViewModel.reviewLiveData.observe(viewLifecycleOwner) { response ->
+            hideLoading()
             response?.let {
                 Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
                 refreshFragment()
@@ -78,6 +92,7 @@ class ProductDetailsFragment : Fragment() {
         }
 
         authViewModel.errorLiveData.observe(viewLifecycleOwner) { error ->
+            hideLoading()
             error?.let {
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             }
@@ -85,18 +100,22 @@ class ProductDetailsFragment : Fragment() {
     }
 
 
-    private fun setupSubmitReviewButton(productId: Int,canReview:Boolean) {
-        if (!canReview){
-            binding.reviewLayout.visibility=View.GONE
-        }else{
-            binding.reviewLayout.visibility=View.VISIBLE
+    private fun setupSubmitReviewButton(productId: Int, canReview: Boolean) {
+        if (!canReview) {
+            binding.reviewLayout.visibility = View.GONE
+        } else {
+            binding.reviewLayout.visibility = View.VISIBLE
             binding.btnSubmitReview.setOnClickListener {
                 val rating = binding.ratingBarSubmitReview.rating.toInt()
                 val comment = binding.etReview.text.toString()
                 if (rating > 0 && comment.isNotEmpty()) {
                     authViewModel.submitReview(productId, rating, comment)
                 } else {
-                    Toast.makeText(requireContext(), "Please provide a rating and comment", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Please provide a rating and comment",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -113,7 +132,9 @@ class ProductDetailsFragment : Fragment() {
         } else {
             binding.btnBuyNow.setOnClickListener {
                 val action =
-                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToPaymentFragment(args.productId)
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToPaymentFragment(
+                        args.productId
+                    )
                 findNavController().navigate(action)
             }
         }
@@ -128,7 +149,8 @@ class ProductDetailsFragment : Fragment() {
             .setAllowedOverMetered(true)
             .setAllowedOverRoaming(true)
 
-        val downloadManager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val downloadManager =
+            requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)
 
         Snackbar.make(binding.root, "File downloaded successfully", Snackbar.LENGTH_SHORT).show()
@@ -136,6 +158,21 @@ class ProductDetailsFragment : Fragment() {
 
 
     private fun refreshFragment() {
-        findNavController().navigate(ProductDetailsFragmentDirections.actionProductDetailsFragmentSelf(args.productId))
+        findNavController().navigate(
+            ProductDetailsFragmentDirections.actionProductDetailsFragmentSelf(
+                args.productId
+            )
+        )
     }
+
+    private fun showLoading() {
+        binding.progressBarDetails.visibility = View.VISIBLE
+        binding.detailsLayout.visibility = View.GONE
+    }
+
+    private fun hideLoading() {
+        binding.progressBarDetails.visibility = View.GONE
+        binding.detailsLayout.visibility = View.VISIBLE
+    }
+
 }

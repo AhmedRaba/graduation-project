@@ -1,66 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".ui.frags.product_details.ProductDetailsFragment">
 
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progress_bar_details"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/ic_loading_animation" />
 
-        <ImageView
-            android:id="@+id/ic_back_arrow"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_back_arrow" />
 
-    </Toolbar>
+    <LinearLayout
+        android:id="@+id/details_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        <Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:background="@color/white">
 
+            <ImageView
+                android:id="@+id/ic_back_arrow"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_back_arrow" />
 
-            <androidx.cardview.widget.CardView
+        </Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <ImageView
-                    android:id="@+id/iv_details_product_image"
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    tools:src="@drawable/iv_dev_store_logo" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_details_product_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/iv_dev_store_logo" />
+                </androidx.cardview.widget.CardView>
 
 
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_details_product_name"
-                    style="@style/DarkBlueTextView"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_weight="1"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    tools:text="Project Name" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_details_product_name"
+                        style="@style/DarkBlueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="1"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        tools:text="Project Name" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/ic_star" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_details_reviews_average"
+                            style="@style/GreyTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            tools:text="3.9" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_details_product_uploader"
@@ -72,140 +123,140 @@
                     tools:text="Updloaded by" />
 
 
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_details_product_price"
-                style="@style/OrangeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="18sp"
-                android:visibility="gone"
-                tools:text="$200" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_details_product_desc"
-                style="@style/GreyTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                tools:text="Project Description" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/darker_gray" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_total_price"
-                style="@style/OrangeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="20sp"
-                tools:text="Total Price: $200" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_buy_now"
-                style="@style/CustomButton"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="24dp"
-                android:text="Buy Now"
-                android:textColor="@android:color/white" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/darker_gray" />
-
-
-            <LinearLayout
-                android:id="@+id/review_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_details_product_price"
+                    style="@style/OrangeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    tools:text="$200" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    style="@style/DarkBlueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:text="Add review"
-                    android:textSize="24sp" />
-
-                <EditText
-                    android:id="@+id/et_review"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:hint="Enter your comment" />
-
-                <RatingBar
-                    android:id="@+id/ratingBar_submit_review"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:isIndicator="false"
-                    android:layout_marginVertical="5dp"
-                    android:theme="@style/RatingBar"
-                    android:stepSize="1"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_submit_review"
-                    android:layout_marginHorizontal="5dp"
-                    style="@style/CustomButton"
-                    android:layout_marginVertical="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Submit" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_reviews"
-                    style="@style/DarkBlueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
-                    android:text="Reviews"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_num_reviews"
+                    android:id="@+id/tv_details_product_desc"
                     style="@style/GreyTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:text="(21)" />
+                    tools:text="Project Description" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/darker_gray" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_total_price"
+                    style="@style/OrangeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textSize="20sp"
+                    tools:text="Total Price: $200" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_buy_now"
+                    style="@style/CustomButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Buy Now"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/darker_gray" />
+
+
+                <LinearLayout
+                    android:id="@+id/review_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/DarkBlueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:text="Add review"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/et_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:hint="Enter your comment" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar_submit_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="5dp"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:stepSize="1"
+                        android:theme="@style/RatingBar" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_submit_review"
+                        style="@style/CustomButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="5dp"
+                        android:text="Submit" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_reviews"
+                        style="@style/DarkBlueTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="16dp"
+                        android:text="Reviews"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_num_reviews"
+                        style="@style/GreyTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="16dp"
+                        android:layout_marginStart="10dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="(21)" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reviews_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_product_review" />
 
             </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/reviews_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_product_review" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
