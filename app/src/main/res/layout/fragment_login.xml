@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="8dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textSize="25sp" />
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="16dp"
-            android:text="Sign in to continue" />
+            android:text="@string/sign_in_to_continue" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_email"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textSize="22sp" />
 
         <EditText
@@ -76,7 +76,7 @@
             style="@style/CustomEditText"
             android:layout_marginTop="10dp"
             android:autofillHints="emailAddress"
-            android:hint="Enter your email"
+            android:hint="@string/enter_your_email"
             android:inputType="textEmailAddress" />
 
         <ProgressBar
@@ -91,7 +91,7 @@
             style="@style/ErrorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email is required"
+            android:text="@string/email_is_required"
             android:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Password"
+            android:text="@string/password"
             android:textSize="22sp" />
 
         <EditText
@@ -109,7 +109,7 @@
             android:layout_marginTop="10dp"
             android:autofillHints="password"
             android:drawableEnd="@drawable/ic_eye_off"
-            android:hint="Enter password"
+            android:hint="@string/enter_password"
             android:inputType="textPassword" />
 
         <TextView
@@ -117,7 +117,7 @@
             style="@style/ErrorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password is required"
+            android:text="@string/password_is_required"
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:text="Login" />
+            android:text="@string/login" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                 style="@style/GreyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account? "
+                android:text="@string/don_t_have_an_account"
                 android:textAlignment="textEnd" />
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Register" />
+                android:text="@string/register" />
 
         </LinearLayout>
     </LinearLayout>

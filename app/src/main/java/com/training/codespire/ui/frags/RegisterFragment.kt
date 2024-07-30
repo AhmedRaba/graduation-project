@@ -36,12 +36,12 @@ class RegisterFragment : Fragment() {
         authViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(AuthViewmodel::class.java)
+        )[AuthViewmodel::class.java]
 
         authViewModel.registerResponseLiveData.observe(viewLifecycleOwner) { registerResponse ->
             showLoading()
             registerResponse?.let {
-                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                showToast("Welcome ${it.user.name}")
                 // Automatically log in the user after successful registration
                 val email = binding.etRegEmail.text.toString()
                 val password = binding.etRegPassword.text.toString()
@@ -64,7 +64,7 @@ class RegisterFragment : Fragment() {
             error?.let {
                 hideLoading()
                 handleErrors(error)
-                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                showToast(error)
             }
         }
 
@@ -225,6 +225,20 @@ class RegisterFragment : Fragment() {
             setFieldError(binding.etRegPassword, binding.tvRegPasswordError, "Password must be at least 8 characters")
         }
     }
+
+    private fun showToast(message: String) {
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.toast_layout, null)
+        val textView = layout.findViewById<TextView>(R.id.toast_text)
+        textView.text = message
+
+        val toast = Toast(requireContext())
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
+        toast.show()
+
+    }
+
 }
 
 

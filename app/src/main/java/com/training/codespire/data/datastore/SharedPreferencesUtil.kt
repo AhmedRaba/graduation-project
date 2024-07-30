@@ -29,7 +29,7 @@ class SharedPreferencesUtil(context: Context) {
         set(value) = sharedPreferences.edit().putString(KEY_USERNAME, value).apply()
 
     var categoryId: Int
-        get() = sharedPreferences.getInt(KEY_CATEGORY_ID, 0) // Default value is 0
+        get() = sharedPreferences.getInt(KEY_CATEGORY_ID, 0)
         set(value) = sharedPreferences.edit().putInt(KEY_CATEGORY_ID, value).apply()
 
     fun clear() {

@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Settings"
+                    android:text="Profile"
                     android:textSize="30sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -83,50 +83,9 @@
                     android:text="UserName"
                     android:textSize="18sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_language" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/GreyTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="1"
-                        android:text="Language"
-                        android:textSize="20sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_profile_change_language"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:text="@string/underline_text"
-                        android:textColor="@color/orange"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp" />
 
                 <LinearLayout
-                    android:id="@+id/profile_add_project"
+                    android:id="@+id/profile_about_us"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -136,15 +95,16 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_add" />
+                        android:src="@drawable/ic_about" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_profile_about_us"
                         style="@style/GreyTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:text="Manage Projects"
+                        android:text="@string/about_us_profile"
                         android:textSize="20sp" />
 
                     <ImageView
@@ -160,7 +120,7 @@
                     android:layout_margin="5dp" />
 
                 <LinearLayout
-                    android:id="@+id/proile_about_us"
+                    android:id="@+id/profile_terms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -170,16 +130,16 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_about" />
+                        android:src="@drawable/ic_terms" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/profile_about_us"
+                        android:id="@+id/tv_profile_terms"
                         style="@style/GreyTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:text="About Us"
+                        android:text="Terms and conditions"
                         android:textSize="20sp" />
 
                     <ImageView
@@ -209,11 +169,11 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/GreyTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:text="Log Out"
+                        android:text="@string/log_out"
                         android:textSize="20sp" />
 
                     <ImageView
@@ -223,28 +183,24 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp" />
-
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
         <TextView
             android:id="@+id/tv_copyright"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:gravity="bottom"
             android:text="© 2024 DevStore"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp"
-            android:layout_gravity="center"
-            android:gravity="bottom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_fragment"
-            android:layout_marginBottom="8dp" />
+            app:layout_constraintTop_toBottomOf="@id/profile_fragment" />
 
     </LinearLayout>
 

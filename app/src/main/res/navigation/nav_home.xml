@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.training.codespire.PaymentFragment"
+        android:name="com.training.codespire.ui.frags.payment.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" >
         <action

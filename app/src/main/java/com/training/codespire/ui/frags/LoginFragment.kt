@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
         authViewmodel.loginResponseLiveData.observe(viewLifecycleOwner) { loginResponse ->
             showLoading()
             loginResponse?.let {
-                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                showToast("Welcome ${it.user.name}")
                 sharedPreferencesUtil.isLoggedIn = true
                 navigateToMainActivity()
             }
@@ -160,6 +160,22 @@ class LoginFragment : Fragment() {
         binding.loginFragment.visibility = View.VISIBLE
         binding.progressBarLogin.visibility = View.GONE
     }
+
+    private fun showToast(message: String) {
+
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.toast_layout, null)
+        val textView = layout.findViewById<TextView>(R.id.toast_text)
+        textView.text = message
+
+
+        val toast = Toast(requireContext())
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
+        toast.show()
+
+    }
+
 }
 
 

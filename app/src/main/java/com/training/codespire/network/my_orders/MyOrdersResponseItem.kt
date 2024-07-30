@@ -9,5 +9,10 @@ data class MyOrdersResponseItem(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: String
+    val price: String,
+    @SerializedName("image")
+    val image:String,
+    @SerializedName("download_link")
+    val downloadUrl:String
+
 )

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -115,5 +116,7 @@ class SearchFragment : Fragment() {
             SearchFragmentDirections.actionSearchFragmentToProductDetailsFragment(productId)
         findNavController().navigate(action)
     }
+
+
 
 }

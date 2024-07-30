@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PaymentFragment">
+    tools:context=".ui.frags.payment.PaymentFragment">
 
 
     <Toolbar
@@ -35,7 +35,7 @@
             style="@style/DarkBlueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="We Accept"
+            android:text="@string/we_accept"
             android:textSize="24sp" />
 
         <ImageView
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Card Number"
+            android:hint="@string/card_number"
             android:importantForAutofill="no"
             android:inputType="number"
             android:textStyle="bold" />
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Expiry Date (MM/YY)"
+            android:hint="@string/expiry_date_mm_yy"
             android:importantForAutofill="no"
             android:inputType="date"
             android:textStyle="bold" />
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="CVV"
+            android:hint="@string/cvv"
             android:importantForAutofill="no"
             android:inputType="number"
             android:textStyle="bold" />
@@ -104,13 +104,13 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="24dp"
-            android:text="Pay Now" />
+            android:text="@string/pay_now" />
 
         <TextView
             android:id="@+id/tvErrorMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Error message will be displayed here"
+            android:text="@string/error_message_will_be_displayed_here"
             android:textColor="@android:color/holo_red_light"
             android:visibility="gone" />
 

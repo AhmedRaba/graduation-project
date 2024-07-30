@@ -48,13 +48,14 @@ class ProfileFragment : Fragment() {
         authViewModel.errorLiveData.observe(viewLifecycleOwner) { error ->
             hideLoading()
             error?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                showToast(it)
             }
         }
 
 
         logout()
         showAboutUs()
+        showTerms()
         setUsername()
 
         return binding.root
@@ -106,7 +107,7 @@ class ProfileFragment : Fragment() {
 
     private fun showAboutUs() {
 
-        binding.proileAboutUs.setOnClickListener {
+        binding.profileAboutUs.setOnClickListener {
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_about_us, null)
             val dialogBuilder = AlertDialog.Builder(requireContext()).setView(dialogView).create()
             dialogView.findViewById<Button>(R.id.btn_about_us_close).setOnClickListener {
@@ -114,6 +115,32 @@ class ProfileFragment : Fragment() {
             }
             dialogBuilder.show()
         }
+
+    }
+
+    private fun showTerms() {
+        binding.profileTerms.setOnClickListener {
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_terms, null)
+            val dialogBuilder = AlertDialog.Builder(requireContext()).setView(dialogView).create()
+            dialogView.findViewById<Button>(R.id.btn_terms_close).setOnClickListener {
+                dialogBuilder.dismiss()
+            }
+            dialogBuilder.show()
+        }
+    }
+
+    private fun showToast(message: String) {
+
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.toast_layout, null)
+        val textView = layout.findViewById<TextView>(R.id.toast_text)
+        textView.text = message
+
+
+        val toast = Toast(requireContext())
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
+        toast.show()
 
     }
 

@@ -22,14 +22,14 @@
                 style="@style/DarkBlueTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search"
+                android:text="@string/search"
                 android:layout_marginBottom="8dp"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -46,7 +46,7 @@
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/search_view"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="#f7f8fa"
                         app:iconifiedByDefault="false"
                         app:queryHint="Search for projects..." />
