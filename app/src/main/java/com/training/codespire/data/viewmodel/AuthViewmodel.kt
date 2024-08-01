@@ -11,6 +11,8 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.change_password.ChangePasswordRequest
+import com.training.codespire.network.change_password.ChangePasswordResponse
 import com.training.codespire.network.my_orders.MyOrdersResponse
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
@@ -34,6 +36,8 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
     val reviewLiveData = MutableLiveData<ReviewResponse>()
     val paymentResponseLiveData = MutableLiveData<PaymentResponse>()
     val ordersLiveData = MutableLiveData<MyOrdersResponse>()
+    val changePasswordLiveData = MutableLiveData<ChangePasswordResponse>()
+    val checkEmailResponseLiveData = MutableLiveData<Boolean>()
     val errorLiveData = MutableLiveData<String>()
 
 
@@ -203,6 +207,41 @@ class AuthViewmodel(application: Application) : AndroidViewModel(application) {
                 val response = repository.getOrders()
                 if (response.isSuccessful) {
                     ordersLiveData.postValue(response.body())
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
+
+    fun checkEmail(email: String) {
+        viewModelScope.launch {
+            try {
+                val response = repository.checkEmail(email)
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        checkEmailResponseLiveData.postValue(it.exists)
+                    }
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    errorLiveData.postValue(errorMessage)
+                }
+            } catch (e: Exception) {
+                errorLiveData.postValue("Network error: ${e.message}")
+            }
+        }
+    }
+
+    fun changePassword(email: String, changePasswordRequest: ChangePasswordRequest) {
+        viewModelScope.launch {
+            try {
+                val response = repository.changePassword(email, changePasswordRequest)
+                if (response.isSuccessful) {
+                    changePasswordLiveData.postValue(response.body())
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
                     errorLiveData.postValue(errorMessage)

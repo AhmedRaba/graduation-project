@@ -5,8 +5,10 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.change_password.ChangePasswordRequest
+import com.training.codespire.network.change_password.ChangePasswordResponse
+import com.training.codespire.network.check_email.CheckEmailResponse
 import com.training.codespire.network.my_orders.MyOrdersResponse
-import com.training.codespire.network.my_orders.MyOrdersResponseItem
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
 import com.training.codespire.network.product_details.ProductDetailsResponse
@@ -66,6 +68,17 @@ interface ApiService {
     suspend fun getOrders(
         @Header("Authorization") token: String
     ): Response<MyOrdersResponse>
+
+    @POST("change-password")
+    suspend fun changePassword(
+        @Header("email") email: String,
+        @Body changePasswordRequest: ChangePasswordRequest
+    ): Response<ChangePasswordResponse>
+
+    @GET("check-email")
+    suspend fun checkEmail(
+        @Header("email") email: String
+    ):Response<CheckEmailResponse>
 
 
 }

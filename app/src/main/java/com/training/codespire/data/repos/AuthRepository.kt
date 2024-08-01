@@ -9,6 +9,9 @@ import com.training.codespire.network.auth.LoginRequest
 import com.training.codespire.network.auth.LoginResponse
 import com.training.codespire.network.auth.RegisterRequest
 import com.training.codespire.network.auth.RegisterResponse
+import com.training.codespire.network.change_password.ChangePasswordRequest
+import com.training.codespire.network.change_password.ChangePasswordResponse
+import com.training.codespire.network.check_email.CheckEmailResponse
 import com.training.codespire.network.my_orders.MyOrdersResponse
 import com.training.codespire.network.payment.PaymentRequest
 import com.training.codespire.network.payment.PaymentResponse
@@ -90,5 +93,16 @@ class AuthRepository(private val context: Context) {
         return api.getOrders("Bearer $token")
     }
 
+    suspend fun changePassword(
+        email: String,
+        changePasswordRequest: ChangePasswordRequest
+    ): Response<ChangePasswordResponse> {
+        return api.changePassword(email, changePasswordRequest)
+    }
+
+
+    suspend fun checkEmail(email:String):Response<CheckEmailResponse>{
+        return api.checkEmail(email)
+    }
 
 }

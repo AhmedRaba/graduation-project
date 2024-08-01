@@ -19,6 +19,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    packagingOptions {
+        exclude("META-INF/NOTICE.md")
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/ASL2.0")
+        // You can also include other patterns as needed
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -74,6 +82,10 @@ dependencies {
     //  Retorfit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+
+    implementation("com.sun.mail:android-mail:1.6.6")
+    implementation("com.sun.mail:android-activation:1.6.6")
+
 
 
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".EnterEmailFragment">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_email"
+        style="@style/DarkBlueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Enter your Email address to send the code"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/et_validate_email"
+        style="@style/CustomEditText"
+        android:layout_marginTop="20dp"
+        android:autofillHints="emailAddress"
+        android:hint="@string/enter_your_email"
+        android:inputType="textEmailAddress" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_send_code"
+        style="@style/CustomButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="Send code" />
+
+
+</LinearLayout>

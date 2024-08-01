@@ -1,10 +1,7 @@
 package com.training.codespire.ui.frags
 
-import com.training.codespire.MainActivity
-import com.training.codespire.data.datastore.SharedPreferencesUtil
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -15,7 +12,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.training.codespire.MainActivity
 import com.training.codespire.R
+import com.training.codespire.data.datastore.SharedPreferencesUtil
 import com.training.codespire.data.viewmodel.AuthViewmodel
 import com.training.codespire.databinding.FragmentLoginBinding
 
@@ -51,7 +50,7 @@ class LoginFragment : Fragment() {
 
         navToRegister()
         checkLogin()
-
+        navigateToEnterEmail()
         return binding.root
     }
 
@@ -131,7 +130,8 @@ class LoginFragment : Fragment() {
                 if (drawable != null && event.rawX >= (passwordField.right - drawable.bounds.width())) {
                     val selection = passwordField.selectionEnd
                     if (isPasswordVisible) {
-                        passwordField.transformationMethod = android.text.method.PasswordTransformationMethod.getInstance()
+                        passwordField.transformationMethod =
+                            android.text.method.PasswordTransformationMethod.getInstance()
                         passwordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, hiddenIcon, 0)
                     } else {
                         passwordField.transformationMethod = null
@@ -174,6 +174,12 @@ class LoginFragment : Fragment() {
         toast.view = layout
         toast.show()
 
+    }
+
+    private fun navigateToEnterEmail() {
+        binding.tvForgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_enterEmailFragment)
+        }
     }
 
 }
