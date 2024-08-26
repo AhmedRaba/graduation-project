@@ -23,4 +23,4 @@ Welcome to Codespire, a Dev Store app designed to manage and sell coding project
 ## Project Demo 🎥
 
 See the Dev Store app in action with this demonstration video:
-[Link to Demo Video](https://vimeo.com/1002723894)
+[Link to Demo Video](https://drive.google.com/file/d/1acc2kCVpB-UGK5SZIRy751ioOpXG1S9K/view?usp=drive_link)
